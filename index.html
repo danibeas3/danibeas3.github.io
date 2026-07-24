@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dani Ruiz – Sistemas IT, Desarrollo Web y Apps</title>
+  <meta name="description" content="Portfolio web interactivo de Daniel Ruiz – Administrador de Sistemas, Desarrollador Web y Creador de Software. Proyectos, conocimientos y contacto.">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <!-- ================================
+       CABECERA FÍSICA UNIFICADA
+  ================================ -->
+  <header class="main-header" id="main-header" data-theme="escenario1">
+    <div class="header-container">
+      <div class="logo">
+        <a href="#escenario1">
+          <img src="imagenes/logoHome.png" alt="Logotipo de Dani Ruiz">
+        </a>
+      </div>
+
+      <!-- Botón menú hamburguesa (móviles) -->
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="menu" id="nav-menu">
+        <ul>
+          <li><a href="#escenario1">Inicio</a></li>
+          <li><a href="#escenario2">Sobre mí</a></li>
+          <li><a href="#escenario3">Conocimientos</a></li>
+          <li><a href="#escenario4">Portfolio</a></li>
+          <li><a href="#escenario5">Contacto</a></li>
+        </ul>
+      </nav> 
+    </div>
+  </header>
+
+  <!-- ================================
+       ESCENARIO 1: INICIO (ESCRITORIO)
+  ================================ -->
+  <section id="escenario1">
+
+    <div class="container">
+      <!-- Presentación -->
+      <div class="presentacion">
+        <h1>
+          Hola, me llamo <span class="destacado">Daniel Ruiz</span><br>
+          Soy Administrador de Sistemas y diseñador Web
+        </h1>
+      </div>
+
+      <!-- Zona de la pared (contenida) -->
+      <div class="pared">
+         <div id="cajonera" title="Cajonera de trabajo"></div>
+         <div id="cuadro-pared" title="Fotografía personal"></div>
+         <ul id="cuadro2">
+          <li><a class="cuadro-img cuadro1" href="#escenario4" title="Ver portfolio por ramas"></a></li>
+          <li><a class="cuadro-img cuadro2" href="#escenario2" title="Sobre mí"></a></li>
+          <li><a class="cuadro-img cuadro3" href="#escenario3" title="Conocimientos"></a></li>
+          <li><a class="cuadro-img cuadro4" href="#escenario5" title="Contacto"></a></li>
+        </ul>
+      </div>
+
+    </div> <!-- Cierre del .container -->
+
+    <!-- Mesa -->
+    <div class="mesa">
+      <div class="objetos-sobre-mesa">
+        <div id="pc" title="Estación de trabajo PC"></div>
+        <div id="ipad"><img src="imagenes/ipad.png" alt="iPad tablet"></div>
+        <div id="iphone"></div>
+        <div id="gafas"><img src="imagenes/gafas.png" alt="Gafas de trabajo"></div>
+        <div id="lapiz"></div>
+        <div id="switch"></div>
+        <div id="libros"><img src="imagenes/libros.png" alt="Libros y guías técnicos"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================================
+       ESCENARIO 2: SOBRE MÍ
+  ================================ -->
+  <section id="escenario2">
+    <div class="container">
+
+      <!-- 🏔️ MONTAÑAS AL FONDO -->
+      <img src="imagenes/montanias.png" alt="Montañas de fondo" id="montañas">
+
+      <!-- 🔹 BLOQUES DE HABILIDADES -->
+      <img src="imagenes/nubepeque2.png" alt="Nube decorativa" class="nube nube3">
+      <ul class="bloques">
+        <li style="z-index: 1;">
+          <img src="imagenes/21.png" alt="Icono de Desarrollo Web">
+          <h3>Desarrollo Web</h3>
+          <p>Diseño y programo sitios web funcionales, modernos y adaptados a cada necesidad...</p>
+        </li>
+
+        <li style="z-index: 3;">
+          <img src="imagenes/22.png" alt="Icono de Diseño Web">
+          <h3>Diseño web</h3>
+          <p>Cuido la experiencia del usuario, los detalles visuales y la coherencia de cada interfaz...</p>
+        </li>
+
+        <li style="z-index: 1;">
+          <img src="imagenes/23.png" alt="Icono de Técnico Informático">
+          <h3>Técnico</h3>
+          <p>Resuelvo averías, monto sistemas y dejo funcionando lo que otros dan por perdido...</p>
+        </li>
+
+        <li style="z-index: 3;">
+          <img src="imagenes/24.png" alt="Icono de Sistemas IT">
+          <h3>Sistemas IT</h3>
+          <p>Administro equipos, redes y servidores con enfoque técnico y ordenado...</p>
+        </li>
+
+        <li style="z-index: 1;">
+          <img src="imagenes/25.png" alt="Icono de Pasión">
+          <h3>Pasión</h3>
+          <p>Me implico en cada proyecto, lo hago con dedicación y no paro hasta que todo funciona...</p>
+        </li>
+      </ul>
+
+      <!-- 🐦 PÁJAROS ANIMADOS -->
+      <div id="pajaro-morado">
+        <div class="pajaro-sprite morado"><span class="vacio"></span></div>
+      </div>
+
+      <div id="pajaro-amarillo">
+        <div class="pajaro-sprite amarillo"><span class="vacio"></span></div>
+      </div>
+
+      <!-- ☁️ NUBES EN MOVIMIENTO -->
+      <img src="imagenes/nubeGrande2.png" alt="Nube flotante grande" class="nube nube1">
+      <img src="imagenes/nubeGrande2.png" alt="Nube flotante grande" class="nube nube2">
+      <div class="nube-lluvia"></div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================
+       ESCENARIO 3: CONOCIMIENTOS
+  ================================ -->
+  <section id="escenario3">
+
+    <!-- 🌠 ESTRELLAS FUGACES -->
+    <div class="estrella-fugaz estrella-fugaz1"></div>
+    <div class="estrella-fugaz estrella-fugaz2"></div>
+    <div class="estrella-fugaz estrella-fugaz3"></div>
+    <div class="estrella-fugaz estrella-fugaz4"></div>
+    <div class="estrella-fugaz estrella-fugaz5"></div>
+
+    <div class="container">
+      
+      <div class="contenido-escenario3">
+
+        <!-- ✨ FONDO CON ESTRELLAS DECORATIVAS -->
+        <div class="estrellas-contenedor">
+          <img src="imagenes/estrellas.png" alt="Fondo decorativo de estrellas" class="estrellas-img">
+          
+          <div class="estrella estrella1 estrella-clara"></div>
+          <div class="estrella estrella2 estrella-oscura"></div>
+          <div class="estrella estrella3 estrella-clara"></div>
+          <div class="estrella estrella4 estrella-oscura"></div>
+          <div class="estrella estrella5 estrella-clara"></div>
+          <div class="estrella estrella6 estrella-oscura"></div>
+          <div class="estrella estrella7 estrella-clara"></div>
+          <div class="estrella estrella8 estrella-oscura"></div>
+          <div class="estrella estrella9 estrella-clara"></div>
+          <div class="estrella estrella10 estrella-oscura"></div>
+          <div class="estrella estrella11 estrella-clara"></div>
+          <div class="estrella estrella12 estrella-oscura"></div>
+          <div class="estrella estrella13 estrella-oscura"></div>
+        </div>
+
+        <!-- 🟣 CÍRCULO IZQUIERDO – Diseño Web -->
+        <div class="circulo-wrapper circulo-izquierda">
+          <div class="circulo borde animado"></div>
+          <div class="circulo interior">
+            <ul>
+              <li>HTML5 / CSS3 / SASS</li>
+              <li>Responsive Web Design</li>
+              <li><span>Diseño Web</span></li>
+              <li>WordPress / Elementor</li>
+              <li>UX/UI Design</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 🔵 CÍRCULO CENTRAL – Admin. Sistemas -->
+        <div class="circulo-wrapper circulo-centro">
+          <div class="circulo borde animado grande"></div>
+          <div class="circulo interior grande centrado">
+            <ul>
+              <li>Linux / Windows Server</li>
+              <li>Virtualización / Docker</li>
+              <li>Seguridad de red y accesos</li>
+              <li><span>Admin. Sistemas</span></li>
+              <li>Active Directory / DNS / DHCP</li>
+              <li>NAS Synology / Backups</li>
+              <li>Redes LAN / WLAN / VPN</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ⚙️ CÍRCULO DERECHO – Soporte Informático -->
+        <div class="circulo-wrapper circulo-derecha">
+          <div class="circulo borde animado"></div>
+          <div class="circulo interior">
+            <ul>
+              <li>Soporte técnico de N2</li>
+              <li>Gestión de incidencias y tickets</li>
+              <li><span>Soport.Informático</span></li>
+              <li>Configuración de redes y usuarios</li>
+              <li>HARDWARE / SOFTWARE</li>
+            </ul>
+          </div>
+        </div>
+
+      </div> <!-- Fin contenido-escenario3 -->
+
+    </div> <!-- Fin container -->
+
+  </section>
+
+  <!-- ================================
+       ESCENARIO 4: PORTFOLIO POR RAMAS (GLOBOS DE CATEGORÍAS)
+  ================================ -->
+  <section id="escenario4">
+
+    <div class="container">
+
+      <!-- Globos aerostáticos interactivos -->
+      <div class="globos-wrapper">
+
+        <a href="#" class="globo-item flotacion1" data-category="web" title="Explorar Proyectos Web">
+          <div class="globo-graphic globo-azul">
+            <span class="globo-icon">🌐</span>
+          </div>
+          <div class="globo-info">
+            <span class="globo-label">Proyectos Web</span>
+            <span class="globo-badge">Ver Proyectos</span>
+          </div>
+        </a>
+
+        <a href="#" class="globo-item flotacion2" data-category="youtube" title="Explorar Canales de YouTube & Media">
+          <div class="globo-graphic globo-naranja">
+            <span class="globo-icon">🎥</span>
+          </div>
+          <div class="globo-info">
+            <span class="globo-label">YouTube & Media</span>
+            <span class="globo-badge">Ver Canales</span>
+          </div>
+        </a>
+
+        <a href="#" class="globo-item flotacion3" data-category="software" title="Explorar Apps & Software">
+          <div class="globo-graphic globo-morado">
+            <span class="globo-icon">💻</span>
+          </div>
+          <div class="globo-info">
+            <span class="globo-label">Apps & Software</span>
+            <span class="globo-badge">Ver Software</span>
+          </div>
+        </a>
+
+        <a href="#" class="globo-item flotacion4" data-category="sistemas" title="Explorar Sistemas & Redes IT">
+          <div class="globo-graphic globo-verde">
+            <span class="globo-icon">🖥️</span>
+          </div>
+          <div class="globo-info">
+            <span class="globo-label">Sistemas & IT</span>
+            <span class="globo-badge">Ver Redes</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div> <!-- /.container -->
+
+    <!-- Nubes animadas de fondo -->
+    <img src="imagenes/nubepeque2.png" alt="" class="nube nube41" aria-hidden="true">
+    <img src="imagenes/nubeGrande2.png" alt="" class="nube nube42" aria-hidden="true">
+    <img src="imagenes/nubeGrande2.png" alt="" class="nube nube43" aria-hidden="true">
+    <img src="imagenes/nubepeque2.png" alt="" class="nube nube44" aria-hidden="true">
+
+    <!-- Avión animado -->
+    <div class="avion-container" aria-hidden="true">
+      <div class="avion"></div>
+    </div>
+
+    <!-- Pájaros animados -->
+    <div class="pajaro-container pajaro-izquierda" aria-hidden="true">
+      <div class="pajaro pajaro-morado"></div>
+    </div>
+
+    <div class="pajaro-container pajaro-derecha" aria-hidden="true">
+      <div class="pajaro pajaro-amarillo"></div>
+    </div>
+
+    <!-- Sierra decorativa de fondo -->
+    <div class="sierra-fondo" aria-hidden="true"></div>
+
+  </section>
+
+  <!-- ================================
+       ESCENARIO 5: CONTACTO
+  ================================ -->
+  <section id="escenario5">
+
+    <div class="montanas-escenario5">
+      <img src="imagenes/montana5.svg" alt="Montaña decorativa" class="montana montana-peque1">
+      <img src="imagenes/montana5.svg" alt="Montaña decorativa" class="montana montana-peque2">
+    </div>
+
+    <img src="imagenes/montana5.svg" alt="Montaña decorativa grande" class="montana montana-grande">
+
+    <div class="nubes-esquinas-escenario5">
+      <img src="imagenes/nubeEsquinaD.png" alt="Nube flotante" class="nube-esquina nube-esquina-derecha">
+    </div>
+
+    <img src="imagenes/nubeEs5.png" alt="Nube flotante" class="nube-media-esc5">
+    <img src="imagenes/rafaga2.png" alt="Ráfaga de viento" class="rafaga rafaga2">
+    <img src="imagenes/rafaga3.png" alt="Ráfaga de viento" class="rafaga rafaga3">
+
+    <div class="container">
+
+      <div class="formulario-contacto">
+        <h2>CONTACTA CONMIGO</h2>
+        <form action="contacto.php" method="post" id="form-contacto">
+          <div class="fila-input">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellidos" placeholder="Apellidos" required>
+          </div>
+          <input type="text" name="contacto" placeholder="Teléfono o email" required>
+          <textarea name="mensaje" placeholder="¿En qué te puedo ayudar?" required></textarea>
+          <button type="submit">ENVIAR</button>
+          <div id="form-respuesta" class="form-respuesta"></div>
+        </form>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================================
+       MODAL EXPLORADOR DE PROYECTOS
+  ================================ -->
+  <div id="portfolio-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button id="btn-close-modal" class="btn-close-modal" aria-label="Cerrar ventana">&times;</button>
+      
+      <div class="modal-header">
+        <h2 id="modal-category-title">Categoría</h2>
+        <p id="modal-category-desc">Explora los proyectos de esta sección</p>
+      </div>
+
+      <!-- Pestañas de categorías -->
+      <div id="modal-tabs" class="modal-tabs"></div>
+
+      <!-- Contenedor con scroll para tarjetas de proyectos -->
+      <div id="modal-projects-list" class="modal-projects-list"></div>
+    </div>
+  </div>
+
+  <!-- Fallback script para compatibilidad tradicional -->
+  <script src="js/scripts.js" defer></script>
+</body>
+</html>

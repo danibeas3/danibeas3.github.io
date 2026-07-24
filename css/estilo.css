@@ -1,0 +1,2338 @@
+/* ------------------------------
+   ESTILO GLOBAL UNIFICADO
+   Autor: Dani Ruiz
+------------------------------ */
+
+/* ------------------------------
+   Fuentes personalizadas
+------------------------------ */
+@font-face {
+  font-family: 'Champagne';
+  src: url('../fuentes/champagne_limousines/Champagne_Limousines.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sail';
+  src: url('../fuentes/Sail-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Marcelle';
+  src: url('../fuentes/marcelle.ttf') format('truetype');
+}
+
+/* ------------------------------
+   Reset básico y estructura global
+------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+  font-family: 'Champagne', sans-serif;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ------------------------------
+   Contenedor general
+------------------------------ */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 0 2rem 0;
+}
+
+/* ------------------------------
+   Escenarios base
+------------------------------ */
+#escenario1, #escenario2, #escenario3, #escenario4, #escenario5 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#escenario1 { background-color: #E94E5D; position: relative; }
+#escenario2 { background-color: #59BCB3; }
+#escenario3 { background-color: #473A5C; }
+#escenario4 { background-color: #FDECEA; }
+#escenario5 { background-color: #efedec; position: relative;  overflow: hidden; }
+
+/* ------------------------------
+   Cabecera Única Fija (Transparente y Adaptable)
+------------------------------ */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.8rem 0;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  transition: padding 0.3s ease;
+}
+
+.main-header.scrolled {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding: 0.5rem 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  max-width: 140px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+.menu ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.menu a {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.15rem;
+  color: #FFF6E5;
+  font-family: 'Champagne', sans-serif;
+  font-weight: bold;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+  width: 100%;
+}
+
+/* 🎨 Colores adaptativos de menú según el escenario activo */
+header#main-header[data-theme="escenario1"] .menu a,
+.main-header[data-theme="escenario1"] .menu a { color: #FFF6E5 !important; }
+header#main-header[data-theme="escenario1"] .menu a::after,
+.main-header[data-theme="escenario1"] .menu a::after { background-color: #FFF6E5 !important; }
+
+header#main-header[data-theme="escenario2"] .menu a,
+.main-header[data-theme="escenario2"] .menu a { color: #1F4037 !important; }
+header#main-header[data-theme="escenario2"] .menu a::after,
+.main-header[data-theme="escenario2"] .menu a::after { background-color: #1F4037 !important; }
+
+header#main-header[data-theme="escenario3"] .menu a,
+.main-header[data-theme="escenario3"] .menu a { color: #F9A8D4 !important; }
+header#main-header[data-theme="escenario3"] .menu a::after,
+.main-header[data-theme="escenario3"] .menu a::after { background-color: #F9A8D4 !important; }
+
+header#main-header[data-theme="escenario4"] .menu a,
+.main-header[data-theme="escenario4"] .menu a { color: #7B1FA2 !important; }
+header#main-header[data-theme="escenario4"] .menu a::after,
+.main-header[data-theme="escenario4"] .menu a::after { background-color: #7B1FA2 !important; }
+
+header#main-header[data-theme="escenario5"] .menu a,
+.main-header[data-theme="escenario5"] .menu a { color: #7A3B18 !important; }
+header#main-header[data-theme="escenario5"] .menu a::after,
+.main-header[data-theme="escenario5"] .menu a::after { background-color: #7A3B18 !important; }
+
+/* Botón Hamburguesa */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: #FFF6E5;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* 📩 Respuesta Formulario AJAX */
+.form-respuesta {
+  display: none;
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.form-respuesta.exito {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #1e824c;
+  border: 1px solid #2ecc71;
+}
+
+.form-respuesta.error {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #962d22;
+  border: 1px solid #e74c3c;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ------------------------------
+   Presentación Escenario 1
+------------------------------ */
+#escenario1 .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 130px;
+  padding-bottom: 270px;
+}
+.presentacion {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.presentacion h1 {
+  font-size: 1.8rem;
+  font-family: 'Champagne', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  color: #3D444C;
+}
+.presentacion .destacado {
+  color: #FFF6E5;
+  font-size: 1.8rem;
+  font-family: 'Sail', serif;
+  letter-spacing: 1px;
+}
+
+/* ------------------------------
+   Estructura pared + mesa Escenario 1
+------------------------------ */
+.pared {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 250px;
+}
+.mesa {
+  width: 100%;
+  height: 270px;
+  background-color: #F7C7A8;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.objetos-sobre-mesa {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
+
+/* ------------------------------
+   Objetos: pared
+------------------------------ */
+#cajonera {
+  left: 9.6%;
+  bottom: 0;
+  width: 160px;
+  height: 240px;
+  background: url('../imagenes/cajonera.png') no-repeat top center;
+  background-size: 160px 480px;
+  position: absolute;
+}
+#cajonera:hover {
+  background-position-y: -240px;
+}
+#cuadro-pared {
+  left: 24%;
+  bottom: 120px;
+  width: 72px;
+  height: 100px;
+  background: url('../imagenes/foto.png') no-repeat top center;
+  background-size: 75px 200px;
+  position: absolute;
+  z-index: 6;
+  transition: transform 0.2s ease;
+}
+#cuadro-pared:hover {
+  background-position-y: -100px;
+  transform: rotate(7deg);
+}
+#cuadro2 {
+  background: #E3CCBF;
+  width: 185px;
+  height: 115px;
+  position: absolute;
+  bottom: 140px;
+  left: 70%;
+  border: 5px solid #A1836F;
+  z-index: 6;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 80px);
+  grid-gap: 5px;
+  justify-content: center;
+}
+#cuadro2 li {
+  list-style: none;
+}
+.cuadro-img {
+  display: block;
+  width: 80px;
+  height: 45px;
+  background: url('../imagenes/cuadro2.png') no-repeat;
+  background-size: 320px 90px;
+  transition: transform 0.2s ease;
+}
+.cuadro1 { background-position:   0    0; }
+.cuadro2 { background-position: -80px  0; }
+.cuadro3 { background-position:-160px  0; }
+.cuadro4 { background-position:-240px  0; }
+.cuadro1:hover { background-position:   0   -45px; transform: rotate(7deg); }
+.cuadro2:hover { background-position: -80px  -45px; transform: rotate(7deg); }
+.cuadro3:hover { background-position:-160px -45px; transform: rotate(7deg); }
+.cuadro4:hover { background-position:-240px -45px; transform: rotate(7deg); }
+
+/* ------------------------------
+   Objetos: mesa
+------------------------------ */
+#pc, #ipad, #iphone, #lapiz, #gafas, #switch, #libros {
+  position: absolute;
+}
+#pc {
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  width: 453px;
+  height: 379px;
+  background: url('../imagenes/pc.png') no-repeat top center;
+  background-size: cover;
+}
+#ipad {
+  left: 0;
+  bottom: 70px;
+  width: 122px;
+  height: auto;
+}
+#iphone {
+  left: 15%;
+  bottom: 75px;
+  width: 40px;
+  height: 80px;
+  background: url('../imagenes/iphone.png') no-repeat top center;
+  background-size: cover;
+}
+#lapiz {
+  left: 25.6%;
+  bottom: 140px;
+  width: 57px;
+  height: 27px;
+  background: url('../imagenes/lapiz.png') no-repeat;
+  background-position: 0px 16px;
+  z-index: 20;
+}
+#lapiz:hover {
+  background-position: 0px -10px;
+}
+#gafas {
+  left: 32%;
+  bottom: 140px;
+  width: 68px;
+  height: auto;
+  z-index: 14;
+}
+#switch {
+  right: 0;
+  bottom: 150px;
+  width: 120px;
+  height: 50px;
+  background: url('../imagenes/switch.png') no-repeat top center;
+  background-size: cover;
+}
+#libros {
+  left: 76.1%;
+  top: 0;
+  transform: translateY(-100%);
+  width: 189px;
+  height: auto;
+}
+
+/* ------------------------------
+   Animaciones hover por sprites
+------------------------------ */
+#pc:hover {
+  background-image: url('../imagenes/pc_encendido.png');
+  animation: animacionPC 2s steps(4) infinite;
+}
+@keyframes animacionPC {
+  from { background-position-y: 0; }
+  to { background-position-y: -1516px; }
+}
+#iphone:hover {
+  background-image: url('../imagenes/iphone_encendido2.png');
+  background-size: 40px 320px;
+  animation: iphoneLlamando 1s steps(4) infinite;
+}
+@keyframes iphoneLlamando {
+  from { background-position-y: 0; }
+  to { background-position-y: -320px; }
+}
+#switch:hover {
+  background-image: url('../imagenes/switch-encendida.png');
+  background-size: 120px 250px;
+  animation: switchJugar 1s steps(5) infinite;
+  transform: rotate(6deg);
+}
+@keyframes switchJugar {
+  from { background-position-y: 0; }
+  to { background-position-y: -250px; }
+}
+
+
+/* --------------------------------------------------
+   ESCENARIO 2 – Estilo completo
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+/* === CONTENEDOR GENERAL === */
+#escenario2 {
+  position: relative; /* Necesario para que montañas y objetos se anclen correctamente */
+  overflow: hidden;   /* Evita scroll por objetos animados fuera del contenedor */
+}
+
+/* === MONTAÑAS DE FONDO === */
+#montañas {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 744px;
+  height: auto;
+  z-index: 1;
+}
+
+/* === BLOQUES DE HABILIDADES === */
+.bloques {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 0rem;
+  position: relative;
+  z-index: 1; /* Base: nubes pueden estar por encima */
+}
+
+.bloques li {
+  position: relative;
+  z-index: 2; /* Cada bloque por encima de fondo */
+  width: 178px;
+  text-align: center;
+  color: #3E4448;
+  font-family: 'Champagne', sans-serif;
+}
+
+.bloques img {
+  width: 178px;
+  height: 178px;
+}
+
+.bloques h3 {
+  font-family: 'Marcelle', cursive;
+  font-size: 1.5rem;
+  color: #FCF9E8;
+  margin-top: 1rem;
+}
+
+.bloques p {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* === PÁJARO MORADO (IZQUIERDA → DERECHA) === */
+#pajaro-morado {
+  position: absolute;
+  left: -5%;
+  z-index: 2;
+  width: 50px;
+  height: 39px;
+  animation: vuelo-morado 40s linear infinite;
+}
+
+.pajaro-sprite.morado {
+  width: 50px;
+  height: 39px;
+  background: url('../imagenes/morado.png') no-repeat;
+  background-size: cover;
+  animation: aleteo-morado 0.3s steps(2) infinite;
+}
+
+@keyframes vuelo-morado {
+  0%   { left: -5%; top: 88%; }
+  15%  { top: 91%; }
+  20%  { top: 82%; }
+  35%  { top: 91%; }
+  45%  { top: 83%; }
+  55%  { top: 87%; }
+  65%  { top: 81%; }
+  85%  { top: 89%; }
+  100% { left: 101%; top: 88%; }
+}
+
+@keyframes aleteo-morado {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -76px; }
+}
+
+/* === PÁJARO AMARILLO (DERECHA → IZQUIERDA) === */
+#pajaro-amarillo {
+  position: absolute;
+  top: 60%;
+  right: -5%;
+  z-index: 2;
+  width: 50px;
+  height: 39px;
+  animation: vuelo-amarillo 30s linear infinite;
+}
+
+.pajaro-sprite.amarillo {
+  width: 50px;
+  height: 39px;
+  background: url('../imagenes/amarillo.png') no-repeat;
+  background-size: cover;
+  animation: aleteo-amarillo 0.3s steps(2) infinite;
+}
+
+@keyframes vuelo-amarillo {
+  0%   { right: -5%; top: 75%; }
+  15%  { top: 75%; }
+  20%  { top: 72%; }
+  35%  { top: 78%; }
+  45%  { top: 70%; }
+  55%  { top: 74%; }
+  65%  { top: 73%; }
+  85%  { top: 77%; }
+  100% { right: 101%; top: 75%; }
+}
+
+@keyframes aleteo-amarillo {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -76px; }
+}
+
+/* === NUBES EN MOVIMIENTO === */
+.nube {
+  position: absolute;
+  z-index: 1;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.nube1 {
+  top: 70px;
+  left: 30%;
+  animation-name: mover-nube1;
+  animation-duration: 10s;
+}
+
+.nube2 {
+  top: 90px;
+  left: 60%;
+  animation-name: mover-nube2;
+  animation-duration: 25s;
+}
+
+.nube3 {
+  top: 150px;
+  left: 30%;
+  width: 67px !important;
+  height: 41px !important;
+  z-index: 2;
+  animation: mover-nube3 23s ease-in-out infinite alternate;
+}
+
+
+
+@keyframes mover-nube1 {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-90px); }
+}
+
+@keyframes mover-nube2 {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(150px); }
+}
+
+@keyframes mover-nube3 {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(400px); }
+}
+
+/* === NUBE DE NIEVE (SPRITE) === */
+.nube-nieve {
+  position: absolute;
+  top: 480px;
+  left: 55.5%;
+  width: 70px;
+  height: 100px;
+  background: url('../imagenes/nube-nieve.png') no-repeat;
+  background-size: 70px 200px;
+  animation: animacion-nube-nieve 0.8s steps(2) infinite,
+             mover-nube-nieve 20s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes animacion-nube-nieve {
+  from { background-position-y: 0; }
+  to   { background-position-y: -200px; }
+}
+
+@keyframes mover-nube-nieve {
+  from { transform: translateX(0); }
+  to   { transform: translateX(40px); }
+}
+
+/* === NUBE DE LLUVIA (SPRITE) === */
+.nube-lluvia {
+  position: absolute;
+  top: 560px;
+  left: 42%;
+  width: 70px;
+  height: 100px;
+  background: url('../imagenes/nube-lluvia2.png') no-repeat;
+  background-size: 70px 400px;
+  animation: animacion-nube-lluvia 4s steps(4) infinite,
+             mover-nube-lluvia 22s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+@keyframes animacion-nube-lluvia {
+  from { background-position-y: 0; }
+  to   { background-position-y: -400px; }
+}
+
+@keyframes mover-nube-lluvia {
+  0%   { left: 40%; }
+  100% { left: 60%; }
+}
+/* --------------------------------------------------
+   ESCENARIO 3 – Estilo completo
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+/* === ESCENARIO PRINCIPAL === */
+#escenario3 {
+  background-color: #473A5C;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === CONTENEDOR DE ESTRELLAS DECORATIVAS === */
+.estrellas-contenedor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 799px;
+  height: 635px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Imagen del fondo de estrellas */
+.estrellas-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Estrellas decorativas fijas (pulsantes) */
+.estrella {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.6;
+  animation: brillo 4s ease-in-out infinite;
+}
+
+/* Colores alternos de estrellas */
+.estrella-clara {
+  background-color: #D0C7E0;
+}
+.estrella-oscura {
+  background-color: #9E76A6;
+}
+
+/* Posiciones individuales de las estrellas decorativas */
+.estrella1  { top: 160px;  left: 192px;  animation-delay: 0s; }
+.estrella2  { top: 50px;   left: 290px;  animation-delay: 0.5s; }
+.estrella3  { top: -5px;   left: 585px;  animation-delay: 1s; }
+.estrella4  { top: 105px;  left: 780px;  animation-delay: 1.5s; }
+.estrella5  { top: 335px;  left: 780px;  animation-delay: 0.8s; }
+.estrella6  { top: 390px;  left: 685px;  animation-delay: 2s; }
+.estrella7  { top: 445px;  left: 780px;  animation-delay: 2.5s; }
+.estrella8  { top: 560px;  left: 780px;  animation-delay: 3s; }
+.estrella9  { top: 558px;  left: 488px;  animation-delay: 3.5s; }
+.estrella10 { top: 505px;  left: 390px;  animation-delay: 4s; }
+.estrella11 { top: 615px;  left: 193px;  animation-delay: 4.5s; }
+.estrella12 { top: 500px;  left: -3px;   animation-delay: 5s; }
+.estrella13 { top: 275px;  left: -3px;   animation-delay: 5s; }
+
+/* Animación de pulso de las estrellas */
+@keyframes brillo {
+  0%, 100% {
+    transform: scale(0.7);
+    filter: blur(1px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.3);
+    filter: blur(4px);
+    opacity: 0.9;
+  }
+}
+
+/* === CONTENIDO CENTRAL DE CÍRCULOS === */
+.contenido-escenario3 {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* === CÍRCULOS Y ESTRUCTURA === */
+
+/* Estructura común */
+.circulo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1 / 1;
+}
+
+/* Círculo central más grande y con z-index superior */
+.circulo-wrapper.circulo-centro {
+  max-width: 340px;
+  width: 340px;
+  height: 340px;
+  z-index: 3;
+}
+
+/* Posiciones laterales */
+.circulo-wrapper.circulo-izquierda {
+  width: 260px;
+  height: 260px;
+  z-index: 1;
+  position: relative;
+  left: 70px;
+}
+.circulo-wrapper.circulo-derecha {
+  width: 260px;
+  height: 260px;
+  z-index: 1;
+  position: relative;
+  right: 70px;
+}
+
+/* Bordes giratorios */
+.circulo-wrapper.circulo-centro .borde {
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  animation: girar-inverso 14s ease-in-out infinite alternate;
+}
+
+.circulo.borde {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 2px dashed #B6C0CA;
+  border-radius: 50%;
+  animation: girar 14s ease-in-out infinite alternate;
+}
+
+/* Animaciones de rotación */
+@keyframes girar {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes girar-inverso {
+  0%   { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Interior de los círculos */
+.circulo.interior {
+  position: absolute;
+  width: 88%;
+  height: 88%;
+  top: 6%;
+  left: 6%;
+  background-color: #d0c7e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Interior del círculo grande */
+.circulo.interior.grande {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #B08CBF;
+}
+
+/* Tipografía y estilo de texto */
+.circulo.interior ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-family: "champagne", sans-serif;
+  color: #473A5C;
+  font-size: 0.9rem;
+}
+
+.circulo.interior ul li {
+  margin-bottom: 0.6rem;
+}
+
+.circulo.interior span {
+  font-family: "marcelle", cursive;
+  font-size: 1.4rem;
+}
+
+/* === ESTRELLAS FUGACES ANIMADAS CON ESTELA === */
+.estrella-fugaz {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  z-index: 2;
+  animation-timing-function: linear;
+}
+
+/* Estela brillante detrás del punto */
+.estrella-fugaz::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to left, white, transparent);
+  transform: rotate(45deg);
+  transform-origin: right center;
+  top: 1px;
+  left: -58px;
+  opacity: 0.8;
+  filter: blur(3px);
+  z-index: 1;
+}
+
+/* Posiciones y animaciones personalizadas */
+.estrella-fugaz1 {
+  top: 60px;
+  left: 20px;
+  animation: fugaz-diagonal1 6s linear infinite;
+  animation-delay: 3s;
+}
+
+.estrella-fugaz2 {
+  top: 180px;
+  left: 400px;
+  animation: fugaz-diagonal2 8s linear infinite;
+  animation-delay: 7s;
+}
+
+.estrella-fugaz3 {
+  top: 200px;
+  left: 750px;
+  animation: fugaz-diagonal3 7s linear infinite;
+  animation-delay: 12s;
+}
+
+.estrella-fugaz4 {
+  top: 320px;
+  left: -20px;
+  animation: fugaz-diagonal4 7.5s linear infinite;
+  animation-delay: 2s;
+}
+
+.estrella-fugaz5 {
+  top: 90px;
+  left: 10px;
+  animation: fugaz-diagonal5 6.5s linear infinite;
+  animation-delay: 9s;
+}
+
+/* Animaciones de movimiento de estrellas fugaces */
+@keyframes fugaz-diagonal1 {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(600px, 350px); opacity: 0; }
+}
+
+@keyframes fugaz-diagonal2 {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(600px, 450px); opacity: 0; }
+}
+
+@keyframes fugaz-diagonal3 {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(600px, 550px); opacity: 0; }
+}
+
+@keyframes fugaz-diagonal4 {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(550px, 320px); opacity: 0; }
+}
+
+@keyframes fugaz-diagonal5 {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(600px, 420px); opacity: 0; }
+}
+/* --------------------------------------------------
+   ESCENARIO 4 – Estilo completo
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+/* === CONTENEDOR GENERAL === */
+#escenario4 {
+  position: relative;   /* Necesario para posicionar la sierra y otros elementos decorativos */
+  overflow: hidden;     /* Evita desbordamiento horizontal por animaciones */
+  background-color: #FDECEA;
+  background-image: none;
+  transition: background-color 2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  z-index: 0;
+}
+
+/* === SIERRA DECORATIVA FIJA AL FONDO === */
+.sierra-fondo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 102px;
+  background: url('../imagenes/sierra.png') repeat-x bottom;
+  background-size: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------
+   NUBES FLOTANTES – Fondo decorativo
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+.nube {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  width: auto;
+  max-width: 110px;
+  height: auto;
+}
+
+.nube41 {
+  top: 60px;
+  left: 10%;
+  animation: nube41Mov 22s ease-in-out infinite alternate;
+}
+.nube42 {
+  top: 120px;
+  left: 60%;
+  animation: nube42Mov 26s ease-in-out infinite alternate;
+}
+.nube43 {
+  top: 280px;
+  left: 15%;
+  animation: nube43Mov 20s ease-in-out infinite alternate;
+}
+.nube44 {
+  top: 240px;
+  left: 80%;
+  animation: nube44Mov 25s ease-in-out infinite alternate;
+}
+.nube45 {
+  top: 320px;
+  left: 50%;
+  animation: nube45Mov 30s ease-in-out infinite alternate;
+}
+
+/* Keyframes – Nubes */
+@keyframes nube41Mov {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-150px); }
+}
+@keyframes nube42Mov {
+  from { transform: translateX(0); }
+  to   { transform: translateX(200px); }
+}
+@keyframes nube43Mov {
+  from { transform: translateX(0); }
+  to   { transform: translateX(180px); }
+}
+@keyframes nube44Mov {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-170px); }
+}
+@keyframes nube45Mov {
+  from { transform: translateX(0); }
+  to   { transform: translateX(220px); }
+}
+
+/* --------------------------------------------------
+   AVIÓN ANIMADO
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+.avion-container {
+  position: absolute;
+  top: 20%;
+  left: -15%;
+  width: 127px;
+  height: 107px;
+  pointer-events: none;
+  z-index: 1;
+  animation: vuelo-avion 35s linear infinite;
+}
+
+.avion {
+  width: 127px;
+  height: 107px;
+  background: url('../imagenes/avion.png') no-repeat;
+  background-size: auto;
+  animation: avion-sprite 1.5s steps(2) infinite;
+}
+
+@keyframes vuelo-avion {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(130vw); }
+}
+
+@keyframes avion-sprite {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -215px; }
+}
+
+/* --------------------------------------------------
+   PÁJAROS ANIMADOS
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+.pajaro-container {
+  position: absolute;
+  width: 50px;
+  height: 39px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pajaro-izquierda {
+  top: 75%;
+  left: -10%;
+  animation: vuelo-ondulado-derecha 25s linear infinite;
+}
+
+.pajaro-derecha {
+  top: 85%;
+  right: -10%;
+  animation: vuelo-ondulado-izquierda 30s linear infinite;
+}
+
+.pajaro {
+  width: 50px;
+  height: 39px;
+  background-repeat: no-repeat;
+  background-size: auto;
+  animation: aleteo 0.4s steps(2) infinite;
+}
+
+.pajaro-morado {
+  background-image: url('../imagenes/morado.png');
+}
+.pajaro-amarillo {
+  background-image: url('../imagenes/amarillo.png');
+}
+
+@keyframes aleteo {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -76px; }
+}
+
+@keyframes vuelo-ondulado-derecha {
+  0%   { transform: translate(-10vw, 0); }
+  15%  { transform: translate(10vw, -8px); }
+  30%  { transform: translate(30vw, 12px); }
+  45%  { transform: translate(50vw, -10px); }
+  60%  { transform: translate(70vw, 6px); }
+  75%  { transform: translate(90vw, -8px); }
+  100% { transform: translate(110vw, 0); }
+}
+
+@keyframes vuelo-ondulado-izquierda {
+  0%   { transform: translate(10vw, 0); }
+  15%  { transform: translate(-10vw, -6px); }
+  30%  { transform: translate(-30vw, 8px); }
+  45%  { transform: translate(-50vw, -10px); }
+  60%  { transform: translate(-70vw, 5px); }
+  75%  { transform: translate(-90vw, -6px); }
+  100% { transform: translate(-110vw, 0); }
+}
+
+/* (Estilos de globos unificados al final del archivo) */
+
+
+/* --------------------------------------------------
+   ESCENARIO 5 – Estilo completo
+   Autor: Dani Ruiz
+-------------------------------------------------- */
+
+/* -----------------------------------------------
+   Montañas del Escenario 5
+-------------------------------------------------- */
+.montanas-escenario5 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.montanas-escenario5 .montana {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  max-height: 90vh;
+}
+
+.montana-peque1 {
+  right: 65%;
+  width: 240px;
+  z-index: 1;
+}
+
+.montana-peque2 {
+  right: 20%;
+  width: 240px;
+  z-index: 1;
+}
+
+.montana-grande {
+  position: absolute;
+  bottom: 0;
+  right: 21%;
+  width: 450px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+
+/* -----------------------------------------------
+   Nubes de esquina – Escenario 5
+-------------------------------------------------- */
+.nubes-esquinas-escenario5 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2; /* Encima de montañas, debajo del formulario */
+}
+
+.nube-esquina {
+  position: absolute;
+  width: auto;
+  height: auto;
+  opacity: 0.95;
+}
+
+.nube-esquina-izquierda {
+  bottom: 0;
+  left: 0;
+  width: 180px;
+}
+
+.nube-esquina-derecha {
+  bottom: 0;
+  right: 0;
+  width: 320px;
+}
+
+/* -----------------------------------------------
+   Nube flotante media – Escenario 5
+-------------------------------------------------- */
+.nube-media-esc5 {
+  position: absolute;
+  bottom: 280px;
+  right: 50%;
+  width: 90px;
+  opacity: 0.9;
+  z-index: 0; /* Por encima de montañas pequeñas, pero debajo de la grande */
+  animation: nube-flotar-horizontal 15s ease-in-out infinite alternate;
+}
+
+@keyframes nube-flotar-horizontal {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(700px); }
+}
+
+/* -----------------------------------------------
+   Ráfaga 2 – Escenario 5
+-------------------------------------------------- */
+.rafaga {
+  position: absolute;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.rafaga2 {
+  top: 65%;
+  right: 0;
+  width: 450px;
+  z-index: 2;
+  transform: translateY(-50%);
+  animation: rafaga-flotar 5s ease-in-out infinite alternate;
+  animation-delay: 2s; /* ⏱️ se retrasa 1 segundo */
+}
+
+@keyframes rafaga-flotar {
+  0%   { transform: translateY(-50%) translateX(0); }
+  100% { transform: translateY(-50%) translateX(150px); }
+}
+
+/* -----------------------------------------------
+   Ráfaga 3 – Escenario 5 (lado izquierdo)
+-------------------------------------------------- */
+.rafaga3 {
+  position: absolute;
+  top: 52%;
+  left: 0;
+  width: 450px;
+  opacity: 0.6;
+  z-index: 2;
+  transform: translateY(-50%);
+  pointer-events: none;
+  animation: rafaga3-flotar 6s ease-in-out infinite alternate;
+  animation-delay: 0s; /* ⏱️ comienza inmediatamente */
+}
+
+@keyframes rafaga3-flotar {
+  0%   { transform: translateY(-50%) translateX(0); }
+  100% { transform: translateY(-50%) translateX(-160px); }
+}
+
+/* -----------------------------------------------
+   Formulario de contacto – Escenario 5
+-------------------------------------------------- */
+.formulario-contacto {
+  flex: 1;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.5rem;
+  color: #6D4C41;
+  padding-left: 2rem;
+  margin-top: 80px;
+  z-index: 4;
+}
+
+.formulario-contacto img {
+  width: 140px;
+  align-self: center;
+}
+
+.formulario-contacto h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #6D4C41;
+  font-family: 'Champagne', sans-serif;
+  text-align: center;
+  align-self: center;
+}
+
+
+.formulario-contacto form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+.fila-input {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Estilos unificados con animación de focus */
+.formulario-contacto input,
+.formulario-contacto textarea {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid #6D4C41;
+  background-color: transparent;
+  font-family: 'Champagne', sans-serif;
+  font-size: 1rem;
+  color: #3D3D3D;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.formulario-contacto input:focus,
+.formulario-contacto textarea:focus {
+  border-bottom: 2px solid #8D5D3A;
+  box-shadow: 0 1px 0 #8D5D3A;
+}
+
+textarea {
+  resize: none;
+  height: 90px;
+}
+
+button[type="submit"] {
+  width: 130px;
+  padding: 0.7rem 1.2rem;
+  background-color: #8D5D3A;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Champagne', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-self: flex-start;
+}
+
+button[type="submit"]:hover {
+  background-color: #6B4024;
+}
+
+/* 🌐 ========== ESCRITORIO GRANDE (hasta 1200px) ========== */
+@media (max-width: 1200px) {
+
+  /* 🎮 Escenario 1 – Ajustes generales */
+  .mesa,
+  .objetos-sobre-mesa {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #cuadro-pared {
+    left: 1%; /* acercamos el cuadro a la izquierda */
+  }
+
+  /* 🌄 Escenario 5 – Ajustes visuales */
+  .montana-peque2 {
+    display: none;
+  }
+
+  .montana-grande {
+    right: 0;
+  }
+
+  .rafaga3 {
+    display: none;
+  }
+}
+
+/* 📱 ========== TABLET Y MENÚ HAMBURGUESA (hasta 768px) ========== */
+@media (max-width: 768px) {
+  /* Cabecera y Menú Hamburguesa */
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(18, 22, 30, 0.97);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
+    transition: right 0.35s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    z-index: 1000;
+    padding: 2rem 1rem;
+  }
+
+  .menu.open {
+    right: 0;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu a {
+    font-size: 1.35rem;
+    color: #FFF !important;
+    font-weight: bold;
+  }
+
+  .menu a::after {
+    background-color: #E94E5D !important;
+  }
+
+  /* 📱 Color del botón hamburguesa según escenario activo */
+  #main-header[data-theme="escenario1"] .menu-toggle span { background-color: #FFF6E5 !important; }
+  #main-header[data-theme="escenario2"] .menu-toggle span { background-color: #1F4037 !important; }
+  #main-header[data-theme="escenario3"] .menu-toggle span { background-color: #F9A8D4 !important; }
+  #main-header[data-theme="escenario4"] .menu-toggle span { background-color: #7B1FA2 !important; }
+  #main-header[data-theme="escenario5"] .menu-toggle span { background-color: #7A3B18 !important; }
+
+  /* 🎮 ESCENARIO 1 (Móvil - Pared, Cuadros y Mesa) */
+  #escenario1 {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #escenario1 .container {
+    padding-top: 60px !important;
+    padding-bottom: 0 !important;
+    position: relative;
+    height: calc(100% - 240px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Posicionar los 2 cuadros en la parte superior de la pared (sin chocar con el texto) */
+  #cuadro-pared {
+    display: block !important;
+    position: absolute !important;
+    top: 70px !important;
+    left: 4% !important;
+    bottom: auto !important;
+    width: 60px !important;
+    height: 85px !important;
+    background-size: 60px 170px !important;
+    z-index: 10 !important;
+    transition: transform 0.2s ease;
+  }
+  #cuadro-pared:active, #cuadro-pared:hover {
+    background-position-y: -85px !important;
+    transform: scale(1.1) rotate(6deg) !important;
+  }
+
+  /* Cuadro de la derecha (Portfolio por ramas - 4 imágenes) */
+  #cuadro2 {
+    display: grid !important;
+    position: absolute !important;
+    top: 70px !important;
+    right: 4% !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 132px !important;
+    height: 88px !important;
+    border: 4px solid #A1836F !important;
+    padding: 3px !important;
+    grid-template-columns: repeat(2, 56px) !important;
+    grid-gap: 4px !important;
+    z-index: 10 !important;
+    transition: transform 0.2s ease;
+    box-sizing: border-box !important;
+  }
+  #cuadro2:active, #cuadro2:hover {
+    transform: scale(1.08) rotate(-4deg) !important;
+  }
+
+  #cuadro2 .cuadro-img {
+    display: block !important;
+    width: 56px !important;
+    height: 35px !important;
+    background-size: 224px 70px !important;
+  }
+  #cuadro2 .cuadro1 { background-position: 0 0 !important; }
+  #cuadro2 .cuadro2 { background-position: -56px 0 !important; }
+  #cuadro2 .cuadro3 { background-position: -112px 0 !important; }
+  #cuadro2 .cuadro4 { background-position: -168px 0 !important; }
+
+  #cuadro2 .cuadro1:hover, #cuadro2 .cuadro1:active { background-position: 0 -35px !important; transform: rotate(5deg); }
+  #cuadro2 .cuadro2:hover, #cuadro2 .cuadro2:active { background-position: -56px -35px !important; transform: rotate(5deg); }
+  #cuadro2 .cuadro3:hover, #cuadro2 .cuadro3:active { background-position: -112px -35px !important; transform: rotate(5deg); }
+  #cuadro2 .cuadro4:hover, #cuadro2 .cuadro4:active { background-position: -168px -35px !important; transform: rotate(5deg); }
+
+  .presentacion {
+    margin-top: 95px !important;
+    text-align: center;
+    z-index: 5;
+  }
+  .presentacion h1 {
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+    padding: 0 10px !important;
+  }
+
+  /* Ocultar elementos decorativos menores de la mesa */
+  #cajonera, #switch, #libros, #ipad, #iphone, #lapiz, #gafas {
+    display: none !important;
+  }
+
+  .mesa {
+    width: 100%;
+    max-width: 100%;
+    height: 240px !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .objetos-sobre-mesa {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  #pc {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 50px !important;
+    width: 250px !important;
+    height: 209px !important;
+    background-size: 250px 209px !important;
+  }
+
+  #pc:hover, #pc:active {
+    background-image: url('../imagenes/pc_encendido.png') !important;
+    background-size: 250px 836px !important;
+    animation: animacionPCMobile 2s steps(4) infinite !important;
+  }
+
+  @keyframes animacionPCMobile {
+    from { background-position-y: 0; }
+    to { background-position-y: -836px; }
+  }
+
+  /* 🏔️ ESCENARIO 2 (Móvil - Disposición Vertical Limpia) */
+  #escenario2 {
+    padding-top: 85px;
+    padding-bottom: 3rem;
+  }
+  #escenario2 .container {
+    width: 90% !important;
+    margin: 0 auto !important;
+  }
+  #escenario2 .nube, #escenario2 .nube-lluvia {
+    display: none !important;
+  }
+
+  .bloques {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .bloques li {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 1.4rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .bloques li img {
+    width: 110px !important;
+    height: 110px !important;
+    margin: 0 auto 0.8rem auto !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+
+  .bloques li h3 {
+    font-size: 1.4rem !important;
+    margin-top: 0.2rem !important;
+    color: #FCF9E8 !important;
+  }
+
+  .bloques li p {
+    font-size: 0.95rem !important;
+    color: #2D3748 !important;
+    margin-top: 0.4rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* 🪐 ESCENARIO 3 (Móvil - Mapa Estelar Animado con Estrellas y Paneles) */
+  #escenario3 {
+    padding-top: 85px;
+    padding-bottom: 3.5rem;
+    min-height: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #escenario3 .container {
+    width: 90% !important;
+    margin: 0 auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Fondo de mapa estelar dinámico en móvil */
+  .estrellas-contenedor {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+    opacity: 0.8 !important;
+  }
+
+  .estrellas-img {
+    display: none !important;
+  }
+
+  /* Distribución vertical de estrellas decorativas en móvil */
+  #escenario3 .estrella {
+    display: block !important;
+    z-index: 1 !important;
+  }
+  #escenario3 .estrella1  { top: 4%;   left: 12%; }
+  #escenario3 .estrella2  { top: 12%;  left: 82%; }
+  #escenario3 .estrella3  { top: 20%;  left: 8%;  }
+  #escenario3 .estrella4  { top: 32%;  left: 88%; }
+  #escenario3 .estrella5  { top: 42%;  left: 14%; }
+  #escenario3 .estrella6  { top: 54%;  left: 84%; }
+  #escenario3 .estrella7  { top: 64%;  left: 10%; }
+  #escenario3 .estrella8  { top: 74%;  left: 86%; }
+  #escenario3 .estrella9  { top: 84%;  left: 18%; }
+  #escenario3 .estrella10 { top: 92%;  left: 76%; }
+
+  .contenido-escenario3 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.8rem !important;
+    margin-top: 1rem !important;
+    padding: 0 !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    z-index: 5 !important;
+  }
+
+  .circulo-wrapper {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 330px !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    margin: 0 auto !important;
+  }
+
+  .circulo.borde {
+    display: none !important;
+  }
+
+  .circulo.interior {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    top: auto !important;
+    left: auto !important;
+    background: rgba(208, 199, 224, 0.94) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 24px !important;
+    padding: 1.6rem 1.2rem !important;
+    border: 2px dashed #9E76A6 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .circulo.interior.grande {
+    width: 100% !important;
+    height: auto !important;
+    border-color: #7B1FA2 !important;
+    background: rgba(215, 205, 232, 0.98) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .circulo.interior ul {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.55rem !important;
+    text-align: center !important;
+    font-size: 0.92rem !important;
+    color: #372A4B !important;
+    font-weight: 600 !important;
+  }
+
+  .circulo.interior li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.35 !important;
+  }
+
+  .circulo.interior span {
+    display: block !important;
+    font-size: 1.4rem !important;
+    font-family: 'Marcelle', cursive !important;
+    color: #473A5C !important;
+    margin: 0.4rem 0 !important;
+    padding: 0.3rem 0 !important;
+    border-top: 1px dashed rgba(71, 58, 92, 0.3) !important;
+    border-bottom: 1px dashed rgba(71, 58, 92, 0.3) !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  /* 🎈 ESCENARIO 4 (Móvil - Cuadrícula 2×2 con sierra y pájaros visibles) */
+  #escenario4 {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    padding-top: 70px;
+    padding-bottom: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  #escenario4 .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    width: 100% !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #escenario4 .nube {
+    display: none !important;
+  }
+  /* Sierra, pájaros y avión permanecen visibles — son el dinamismo del escenario */
+  .globos-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.8rem 0.2rem !important;
+    margin-top: 0 !important;
+    padding: 0 0.8rem 100px 0.8rem !important;
+    width: 100% !important;
+    justify-items: center !important;
+    align-items: center !important;
+    overflow: visible !important;
+  }
+  .globo-item {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 130px !important;
+    scroll-snap-align: unset !important;
+    animation-name: flotarGlobo !important;
+  }
+  .globo-graphic {
+    width: 85px !important;
+    height: 105px !important;
+  }
+  .globo-icon {
+    font-size: 1.4rem !important;
+    margin-top: -26px !important;
+  }
+  .globo-info {
+    margin-top: 4px !important;
+    gap: 2px !important;
+  }
+  .globo-label {
+    font-size: 0.85rem !important;
+    text-align: center !important;
+  }
+  .globo-badge {
+    font-size: 0.68rem !important;
+    padding: 2px 7px !important;
+  }
+
+  /* 📩 ESCENARIO 5 (Móvil - Formulario con montañas restauradas) */
+  #escenario5 {
+    padding-top: 90px;
+  }
+  .montana-grande {
+    display: block !important;
+    right: -100px;
+    width: 320px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .montana-peque1, .montana-peque2 {
+    display: none !important;
+  }
+  .formulario-contacto {
+    max-width: 100%;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+  }
+  .formulario-contacto h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .fila-input {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  .formulario-contacto form {
+    width: 100%;
+    align-items: center;
+  }
+  .formulario-contacto input,
+  .formulario-contacto textarea {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  button[type="submit"] {
+    align-self: center;
+    width: 100%;
+    max-width: 220px;
+  }
+}
+
+/* 🎨 Estilo global para los indicadores visuales de deslizamiento */
+.swipe-hint {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .swipe-hint {
+    display: block !important;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin: 0.3rem auto 1rem auto;
+    width: fit-content;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    letter-spacing: 0.5px;
+    animation: pulseSwipe 2s infinite ease-in-out;
+  }
+
+  @keyframes pulseSwipe {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+}
+
+/* ==================================================
+   🎈 ESTILOS DEL PORTFOLIO POR RAMAS & MODAL GLASSMORPHISM
+   Autor: Dani Ruiz
+================================================== */
+
+/* === GLOBOS INTERACTIVOS EN ESCENARIO 4 === */
+.globos-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+  margin-top: 14vh;
+  position: relative;
+  z-index: 10;
+}
+
+.globo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.globo-item:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.globo-graphic {
+  width: 140px;
+  height: 180px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.3s ease;
+}
+
+.globo-graphic.globo-azul {
+  background-image: url('../imagenes/globoAzul.png');
+}
+
+.globo-graphic.globo-naranja {
+  background-image: url('../imagenes/globoAzul.png');
+  filter: hue-rotate(150deg);
+}
+
+.globo-graphic.globo-morado {
+  background-image: url('../imagenes/globoAzul.png');
+  filter: hue-rotate(80deg);
+}
+
+.globo-graphic.globo-verde {
+  background-image: url('../imagenes/globoAzul.png');
+  filter: hue-rotate(220deg);
+}
+
+.globo-item:hover .globo-graphic {
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22));
+}
+
+.globo-icon {
+  font-size: 2.3rem;
+  margin-top: -48px;
+  display: none;
+}
+
+/* Texto e información colocado JUSTO DEBAJO del globo */
+.globo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.globo-label {
+  font-family: 'Champagne', sans-serif;
+  font-weight: bold;
+  font-size: 1.15rem;
+  color: #3D265A;
+  text-align: center;
+  transition: color 2s ease;
+}
+
+/* Modo oscuro — textos claros para fondos nocturnos */
+#escenario4.modo-oscuro .globo-label {
+  color: #EDE0F5;
+}
+#escenario4.modo-oscuro .globo-badge {
+  background: #9D6EC8;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+#escenario4.modo-oscuro .globo-item:hover .globo-badge {
+  background: #7B4FA8;
+}
+
+.globo-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #8A2BE2;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #FFF;
+  box-shadow: 0 3px 10px rgba(138, 43, 226, 0.3);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.globo-item:hover .globo-badge {
+  background: #6a1bb5;
+  transform: scale(1.05);
+}
+
+/* Animaciones de flotación */
+.flotacion1 { animation: flotarGlobo 4s ease-in-out infinite alternate; }
+.flotacion2 { animation: flotarGlobo 4.8s ease-in-out infinite alternate 0.5s; }
+.flotacion3 { animation: flotarGlobo 4.2s ease-in-out infinite alternate 1s; }
+.flotacion4 { animation: flotarGlobo 5.2s ease-in-out infinite alternate 1.5s; }
+
+@keyframes flotarGlobo {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-15px); }
+}
+
+/* ==================================================
+   🪟 VISOR MODAL (GLASSMORPHISM)
+================================================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(12, 16, 24, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-container {
+  width: 100%;
+  max-width: 850px;
+  max-height: 85vh;
+  background: rgba(26, 32, 44, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  color: #F7FAFC;
+  animation: slideUpModal 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(30px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #FFF;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.btn-close-modal:hover {
+  background: rgba(231, 76, 60, 0.8);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  padding: 2rem 2rem 1rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  color: #FFF;
+  margin-bottom: 0.3rem;
+}
+
+.modal-header p {
+  color: #A0AEC0;
+  font-size: 0.95rem;
+}
+
+/* Pestañas de categorías dentro del modal */
+.modal-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: rgba(15, 20, 28, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #A0AEC0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: #FFF;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background: rgba(157, 78, 221, 0.25);
+  border-color: #9D4EDD;
+  color: #FFF;
+}
+
+/* Lista de proyectos scrollable */
+.modal-projects-list {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.project-card {
+  background: rgba(35, 43, 58, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(157, 78, 221, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.project-card-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+}
+
+.project-card-titles h3 {
+  font-size: 1.15rem;
+  color: #FFF;
+  margin-bottom: 0.2rem;
+}
+
+.project-card-sub {
+  font-size: 0.82rem;
+  color: #CBD5E0;
+}
+
+.project-card-desc {
+  font-size: 0.9rem;
+  color: #A0AEC0;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.tag-pill {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  background: rgba(157, 78, 221, 0.15);
+  color: #D6BCFA;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.project-card-actions {
+  margin-top: auto;
+}
+
+.btn-project-link {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  background: #9D4EDD;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.btn-project-link:hover {
+  background: #8039c4;
+}
+
+.modal-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #A0AEC0;
+}
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="porcentaje10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 392.61 550.95">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #a56f4b;
+      }
+
+      .cls-2 {
+        fill: #cb9674;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-2" points="0 551 180.64 -.05 392.61 551 0 551"/>
+  <polygon class="cls-1" points="0 551 180.64 -.05 180.64 551 0 551"/>
+</svg>
