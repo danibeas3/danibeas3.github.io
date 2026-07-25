@@ -857,7 +857,7 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1rem 0.8rem;
   text-align: center;
   box-sizing: border-box;
 }
@@ -869,6 +869,7 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   top: 0;
   left: 0;
   background-color: #B08CBF;
+  padding: 1.5rem;
 }
 
 /* Tipografía y estilo de texto */
@@ -878,15 +879,36 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   list-style: none;
   font-family: "champagne", sans-serif;
   color: #473A5C;
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.circulo.interior.grande ul {
   font-size: 0.9rem;
+  line-height: 1.3;
 }
 
 .circulo.interior ul li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.32rem;
+}
+
+.circulo.interior ul li:last-child {
+  margin-bottom: 0;
+}
+
+.circulo.interior.grande ul li {
+  margin-bottom: 0.5rem;
 }
 
 .circulo.interior span {
   font-family: "marcelle", cursive;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  display: inline-block;
+  margin: 0.1rem 0;
+}
+
+.circulo.interior.grande span {
   font-size: 1.4rem;
 }
 
@@ -2058,40 +2080,49 @@ button[type="submit"]:hover {
 }
 
 .globo-label {
-  font-family: 'Champagne', sans-serif;
-  font-weight: bold;
-  font-size: 1.15rem;
-  color: #3D265A;
+  font-family: 'Marcelle', cursive;
+  font-weight: normal;
+  font-size: 1.5rem;
+  color: #4A3B53;
   text-align: center;
-  transition: color 2s ease;
+  transition: color 1s ease;
 }
 
-/* Modo oscuro — textos claros para fondos nocturnos */
+/* Modo oscuro — textos claros para fondos nocturnos y estrellas fugaces */
+#escenario4 .estrella-fugaz {
+  display: none;
+}
+#escenario4.modo-oscuro .estrella-fugaz {
+  display: block;
+}
 #escenario4.modo-oscuro .globo-label {
   color: #EDE0F5;
 }
 #escenario4.modo-oscuro .globo-badge {
-  background: #9D6EC8;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  background: #8B6BAE;
+  color: #F4EAFF;
+  box-shadow: 0 3px 12px rgba(180, 140, 220, 0.25);
 }
 #escenario4.modo-oscuro .globo-item:hover .globo-badge {
-  background: #7B4FA8;
+  background: #7459A0;
+  color: #FFFFFF;
 }
 
 .globo-badge {
   display: inline-block;
   padding: 4px 14px;
-  background: #8A2BE2;
+  background: #C8A8D8;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: bold;
-  color: #FFF;
-  box-shadow: 0 3px 10px rgba(138, 43, 226, 0.3);
-  transition: background 0.3s, transform 0.2s;
+  color: #3A2650;
+  box-shadow: 0 3px 10px rgba(180, 140, 210, 0.2);
+  transition: background 1s ease, color 1s ease, transform 0.2s;
 }
 
 .globo-item:hover .globo-badge {
-  background: #6a1bb5;
+  background: #B490C8;
+  color: #2A1A40;
   transform: scale(1.05);
 }
 
