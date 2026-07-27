@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", onScroll);
   onScroll(); // Ejecutar al cargar la página
 
-  // 4. ENVÍO DE FORMULARIO DE CONTACTO VÍA AJAX
+  // 4. ENVÍO DE FORMULARIO DE CONTACTO VÍA WEB3FORMS (AJAX)
   const formContacto = document.getElementById("form-contacto");
   const formRespuesta = document.getElementById("form-respuesta");
 
@@ -269,32 +269,34 @@ document.addEventListener("DOMContentLoaded", function () {
       btnSubmit.innerHTML = "ENVIANDO...";
 
       const formData = new FormData(formContacto);
+      const jsonObject = Object.fromEntries(formData);
+      const json = JSON.stringify(jsonObject);
 
-      fetch("contacto.php", {
+      fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
-          "X-Requested-With": "XMLHttpRequest"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
-        body: formData
+        body: json
       })
-        .then((response) => response.json())
-        .then((data) => {
+        .then(async (response) => {
+          const resJson = await response.json();
           formRespuesta.style.display = "block";
-          if (data.status === "success") {
+          if (response.status === 200 && resJson.success) {
             formRespuesta.className = "form-respuesta exito";
-            formRespuesta.innerHTML = data.message;
+            formRespuesta.innerHTML = "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.";
             formContacto.reset();
           } else {
             formRespuesta.className = "form-respuesta error";
-            formRespuesta.innerHTML = data.message || "Ocurrió un error al enviar el mensaje.";
+            formRespuesta.innerHTML = resJson.message || "Ocurrió un error al enviar el mensaje.";
           }
         })
         .catch((err) => {
           console.error("Error al enviar el formulario:", err);
           formRespuesta.style.display = "block";
-          formRespuesta.className = "form-respuesta exito";
-          formRespuesta.innerHTML = "¡Gracias por contactar! Tu mensaje ha sido registrado.";
-          formContacto.reset();
+          formRespuesta.className = "form-respuesta error";
+          formRespuesta.innerHTML = "Hubo un problema al conectar con el servidor. Inténtalo de nuevo.";
         })
         .finally(() => {
           btnSubmit.disabled = false;

@@ -338,7 +338,13 @@
 
       <div class="formulario-contacto">
         <h2>CONTACTA CONMIGO</h2>
-        <form action="contacto.php" method="post" id="form-contacto">
+        <form action="https://api.web3forms.com/submit" method="POST" id="form-contacto">
+          <input type="hidden" name="access_key" value="1b929b32-38a8-4535-8c1a-920246da4e3a">
+          <input type="hidden" name="subject" value="Nuevo contacto desde DaniRuizWeb">
+          <input type="hidden" name="from_name" value="Portfolio Web - Dani Ruiz">
+          <!-- Campo trampolín Anti-Spam (Honeypot) -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
           <div class="fila-input">
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellidos" placeholder="Apellidos" required>
