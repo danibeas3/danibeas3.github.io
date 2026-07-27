@@ -9,10 +9,9 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
 ## [Unreleased] - 2026-07-27
 
 ### 📩 Añadido / Modificado
-- **Integración de Formulario de Contacto en GitHub Pages (Web3Forms + Anti-Spam):**
-  - Configurada la API de Web3Forms con token de acceso seguro en [index.html](file:///c:/xampp/htdocs/daniruizweb/index.html#L340-L352).
-  - Añadido campo trampolín *Honeypot* oculto (`botcheck`) para filtrado automático de spam y bots.
-  - Actualizado [js/scripts.js](file:///c:/xampp/htdocs/daniruizweb/js/scripts.js#L258-L320) estructurando el payload de Web3Forms con nombres de campo formateados en español, asunto dinámico con el nombre del emisor, fecha/hora de envío y asignación automática de cabecera `Reply-To`.
+- **Integración de Formulario de Contacto en GitHub Pages (EmailJS + Anti-Spam + HTML Personalizado):**
+  - Conectada la API REST de EmailJS con `service_4w5xz7l`, `template_xhrs979` y `QAo2uBtzOXiFasLt8` en [js/scripts.js](file:///c:/xampp/htdocs/daniruizweb/js/scripts.js#L258-L345).
+  - Integrado filtrado *Honeypot* anti-spam (`botcheck`) y envío de parámetros (`from_name`, `reply_to`, `message`, `date_time`) para plantilla HTML personalizada en Gmail/Yahoo.
   - Rediseñada la alerta de confirmación `.form-respuesta.exito` en [estilo.css](file:///c:/xampp/htdocs/daniruizweb/css/estilo.css#L217-L240) sustituyendo el verde genérico por tonos crema/terracota sutiles (`rgba(253, 245, 238, 0.9)`), borde marrón cálido (`rgba(141, 93, 58, 0.35)`), tipografía `Champagne` y color de texto marrón `#6D4C41` integrado con la paleta de montaña de la sección.
 
 ## [Unreleased] - 2026-07-25

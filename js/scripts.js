@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", onScroll);
   onScroll(); // Ejecutar al cargar la página
 
-  // 4. ENVÍO DE FORMULARIO DE CONTACTO VÍA WEB3FORMS (AJAX)
+  // 4. ENVÍO DE FORMULARIO DE CONTACTO VÍA EMAILJS (AJAX)
   const formContacto = document.getElementById("form-contacto");
   const formRespuesta = document.getElementById("form-respuesta");
 
@@ -269,6 +269,22 @@ document.addEventListener("DOMContentLoaded", function () {
       btnSubmit.innerHTML = "ENVIANDO...";
 
       const rawFormData = new FormData(formContacto);
+
+      // Verificación de Honeypot Anti-Spam (Si el bot lo marca, simular éxito sin gastar cuota)
+      const botcheck = rawFormData.get("botcheck");
+      if (botcheck) {
+        formRespuesta.style.display = "block";
+        formRespuesta.className = "form-respuesta exito";
+        formRespuesta.innerHTML = "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.";
+        formContacto.reset();
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = originalBtnText;
+        setTimeout(() => {
+          formRespuesta.style.display = "none";
+        }, 6000);
+        return;
+      }
+
       const nombre = (rawFormData.get("nombre") || "").trim();
       const apellidos = (rawFormData.get("apellidos") || "").trim();
       const contacto = (rawFormData.get("contacto") || "").trim();
@@ -283,49 +299,35 @@ document.addEventListener("DOMContentLoaded", function () {
         minute: "2-digit"
       });
 
-      // Objeto estructurado para Web3Forms con títulos de campo limpios y profesionales
+      // Payload para la API REST de EmailJS
       const payload = {
-        access_key: "1b929b32-38a8-4535-8c1a-920246da4e3a",
-        subject: `📩 Nuevo contacto de ${nombreCompleto} – Portfolio Dani Ruiz`,
-        from_name: `${nombreCompleto} (vía DaniRuizWeb)`,
-        "Nombre Completo": nombreCompleto,
-        "Contacto (Email / Teléfono)": contacto,
-        "Mensaje": mensaje,
-        "Fecha de Envío": fechaActual,
-        "Origen": "DaniRuizWeb (Escenario 5)"
+        service_id: "service_4w5xz7l",
+        template_id: "template_xhrs979",
+        user_id: "QAo2uBtzOXiFasLt8",
+        template_params: {
+          from_name: nombreCompleto,
+          reply_to: contacto,
+          message: mensaje,
+          date_time: fechaActual
+        }
       };
 
-      // Si el contacto introducido es un email válido, activamos Reply-To automático
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (emailRegex.test(contacto)) {
-        payload["replyto"] = contacto;
-        payload["email"] = contacto;
-      }
-
-      // Verificación de Honeypot Anti-Spam
-      const botcheck = rawFormData.get("botcheck");
-      if (botcheck) {
-        payload["botcheck"] = botcheck;
-      }
-
-      fetch("https://api.web3forms.com/submit", {
+      fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
       })
-        .then(async (response) => {
-          const resJson = await response.json();
+        .then((response) => {
           formRespuesta.style.display = "block";
-          if (response.status === 200 && resJson.success) {
+          if (response.ok) {
             formRespuesta.className = "form-respuesta exito";
             formRespuesta.innerHTML = "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.";
             formContacto.reset();
           } else {
             formRespuesta.className = "form-respuesta error";
-            formRespuesta.innerHTML = resJson.message || "Ocurrió un error al enviar el mensaje.";
+            formRespuesta.innerHTML = "Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.";
           }
         })
         .catch((err) => {
