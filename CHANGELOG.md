@@ -13,6 +13,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
   - Configurada la API de Web3Forms con token de acceso seguro en [index.html](file:///c:/xampp/htdocs/daniruizweb/index.html#L340-L352).
   - Añadido campo trampolín *Honeypot* oculto (`botcheck`) para filtrado automático de spam y bots.
   - Actualizado [js/scripts.js](file:///c:/xampp/htdocs/daniruizweb/js/scripts.js#L258-L320) estructurando el payload de Web3Forms con nombres de campo formateados en español, asunto dinámico con el nombre del emisor, fecha/hora de envío y asignación automática de cabecera `Reply-To`.
+  - Rediseñada la alerta de confirmación `.form-respuesta.exito` en [estilo.css](file:///c:/xampp/htdocs/daniruizweb/css/estilo.css#L217-L240) sustituyendo el verde genérico por tonos crema/terracota sutiles (`rgba(253, 245, 238, 0.9)`), borde marrón cálido (`rgba(141, 93, 58, 0.35)`), tipografía `Champagne` y color de texto marrón `#6D4C41` integrado con la paleta de montaña de la sección.
 
 ## [Unreleased] - 2026-07-25
 

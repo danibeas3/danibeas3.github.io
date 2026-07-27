@@ -213,29 +213,31 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   transform: translateY(-9.5px) rotate(-45deg);
 }
 
-/* 📩 Respuesta Formulario AJAX */
+/* 📩 Respuesta Formulario AJAX – Rediseño Escenario 5 (Tonos Tierra & Montaña) */
 .form-respuesta {
   display: none;
   width: 100%;
   margin-top: 15px;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: 'Champagne', sans-serif;
+  font-size: 1.05rem;
   text-align: center;
   font-weight: bold;
   animation: fadeIn 0.4s ease-in-out;
+  box-shadow: 0 4px 15px rgba(109, 76, 65, 0.08);
 }
 
 .form-respuesta.exito {
-  background-color: rgba(46, 204, 113, 0.2);
-  color: #1e824c;
-  border: 1px solid #2ecc71;
+  background-color: rgba(253, 245, 238, 0.9);
+  color: #6D4C41;
+  border: 1px solid rgba(141, 93, 58, 0.35);
 }
 
 .form-respuesta.error {
-  background-color: rgba(231, 76, 60, 0.2);
-  color: #962d22;
-  border: 1px solid #e74c3c;
+  background-color: rgba(250, 238, 238, 0.9);
+  color: #8C3A3A;
+  border: 1px solid rgba(180, 80, 80, 0.35);
 }
 
 @keyframes fadeIn {
