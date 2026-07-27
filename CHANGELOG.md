@@ -12,7 +12,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
 - **Integración de Formulario de Contacto en GitHub Pages (Web3Forms + Anti-Spam):**
   - Configurada la API de Web3Forms con token de acceso seguro en [index.html](file:///c:/xampp/htdocs/daniruizweb/index.html#L340-L352).
   - Añadido campo trampolín *Honeypot* oculto (`botcheck`) para filtrado automático de spam y bots.
-  - Actualizado [js/scripts.js](file:///c:/xampp/htdocs/daniruizweb/js/scripts.js#L258-L306) con manejo de peticiones `fetch()` asíncronas (AJAX JSON), proporcionando feedback inmediato al usuario y limpiando el formulario tras el envío.
+  - Actualizado [js/scripts.js](file:///c:/xampp/htdocs/daniruizweb/js/scripts.js#L258-L320) estructurando el payload de Web3Forms con nombres de campo formateados en español, asunto dinámico con el nombre del emisor, fecha/hora de envío y asignación automática de cabecera `Reply-To`.
 
 ## [Unreleased] - 2026-07-25
 

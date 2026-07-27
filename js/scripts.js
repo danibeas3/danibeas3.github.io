@@ -268,9 +268,45 @@ document.addEventListener("DOMContentLoaded", function () {
       btnSubmit.disabled = true;
       btnSubmit.innerHTML = "ENVIANDO...";
 
-      const formData = new FormData(formContacto);
-      const jsonObject = Object.fromEntries(formData);
-      const json = JSON.stringify(jsonObject);
+      const rawFormData = new FormData(formContacto);
+      const nombre = (rawFormData.get("nombre") || "").trim();
+      const apellidos = (rawFormData.get("apellidos") || "").trim();
+      const contacto = (rawFormData.get("contacto") || "").trim();
+      const mensaje = (rawFormData.get("mensaje") || "").trim();
+
+      const nombreCompleto = `${nombre} ${apellidos}`.trim();
+      const fechaActual = new Date().toLocaleString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      // Objeto estructurado para Web3Forms con títulos de campo limpios y profesionales
+      const payload = {
+        access_key: "1b929b32-38a8-4535-8c1a-920246da4e3a",
+        subject: `📩 Nuevo contacto de ${nombreCompleto} – Portfolio Dani Ruiz`,
+        from_name: `${nombreCompleto} (vía DaniRuizWeb)`,
+        "Nombre Completo": nombreCompleto,
+        "Contacto (Email / Teléfono)": contacto,
+        "Mensaje": mensaje,
+        "Fecha de Envío": fechaActual,
+        "Origen": "DaniRuizWeb (Escenario 5)"
+      };
+
+      // Si el contacto introducido es un email válido, activamos Reply-To automático
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(contacto)) {
+        payload["replyto"] = contacto;
+        payload["email"] = contacto;
+      }
+
+      // Verificación de Honeypot Anti-Spam
+      const botcheck = rawFormData.get("botcheck");
+      if (botcheck) {
+        payload["botcheck"] = botcheck;
+      }
 
       fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -278,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: json
+        body: JSON.stringify(payload)
       })
         .then(async (response) => {
           const resJson = await response.json();
