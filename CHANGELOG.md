@@ -4,7 +4,29 @@ Todos los cambios notables realizados en este proyecto serán documentados en es
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y este proyecto adhiere a la versión semántica.
 
----
+## [Unreleased] - 2026-08-06
+
+### 🚀 Despliegue e Infraestructura (Cloudflare Pages + Registrar)
+- **Dominio Personalizado & Certificado SSL/TLS:**
+  - Adquisición y vinculación del dominio oficial `daniruiz.com` y alias `www.daniruiz.com`.
+  - Configuración de pipeline CI/CD en Cloudflare Pages con compilación automática ante eventos `git push` en la rama `main` de GitHub.
+
+### 📧 Correo Electrónico (Cloudflare Email Routing)
+- **Redirección de Correo Corporativo a Gmail:**
+  - Configurados registros DNS de autenticación de correo `MX` (`route1.mx.cloudflare.net`, etc.), `DKIM` (`cf2024-1._domainkey`) y `SPF` (`v=spf1 include:_spf.mx.cloudflare.net ~all`).
+  - Creadas reglas de enrutamiento activo para `contacto@daniruiz.com`, `hola@daniruiz.com` e `info@daniruiz.com` redirigiendo mensajes entrantes automáticamente hacia `dani.ruizporcel@gmail.com`.
+
+### 🔍 Optimización SEO, Redes Sociales y Estructura
+- **Etiquetas Meta, Canónicas y Previsualización Social:**
+  - Añadida URL canónica `<link rel="canonical" href="https://daniruiz.com/">` en [index.html](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/index.html#L13).
+  - Incorporadas etiquetas Open Graph (`og:title`, `og:description`, `og:image`, `og:url`, `og:locale`) y Twitter Cards (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`) para previsualización enriquecida en mensajería y redes sociales.
+  - Implementado marcado de Datos Estructurados Schema.org (`JSON-LD`) de tipo `Person` (Daniel Ruiz – Administrador de Sistemas & Desarrollador Web).
+  - Configurado `logoweb.png` como favicon oficial `<link rel="icon">`.
+  - Creados archivos [robots.txt](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/robots.txt) y [sitemap.xml](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/sitemap.xml).
+
+### 🛠️ Compatibilidad
+- **Soporte ES Modules:**
+  - Actualizada la etiqueta de script en [index.html](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/index.html#L381) a `<script type="module" src="js/scripts.js" defer></script>` garantizando compatibilidad con empaquetadores como Vite y despliegues estáticos.
 
 ## [Unreleased] - 2026-07-27
 
