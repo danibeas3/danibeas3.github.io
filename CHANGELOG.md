@@ -21,8 +21,14 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
   - Añadida URL canónica `<link rel="canonical" href="https://daniruiz.com/">` en [index.html](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/index.html#L13).
   - Incorporadas etiquetas Open Graph (`og:title`, `og:description`, `og:image`, `og:url`, `og:locale`) y Twitter Cards (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`) para previsualización enriquecida en mensajería y redes sociales.
   - Implementado marcado de Datos Estructurados Schema.org (`JSON-LD`) de tipo `Person` (Daniel Ruiz – Administrador de Sistemas & Desarrollador Web).
-  - Configurado `logoweb.png` como favicon oficial `<link rel="icon">`.
+  - Configurado `imagenes/logoHome.png` como favicon oficial `<link rel="icon">`.
   - Creados archivos [robots.txt](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/robots.txt) y [sitemap.xml](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/sitemap.xml).
+
+### 🎨 Ajustes Estéticos y Visuales
+- **Ajuste de Posición en Escenario 1:**
+  - Reposicionada la cajonera `#cajonera` en [css/estilo.css](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/css/estilo.css#L305-L314) con `bottom: -20px;` para que repose ligeramente integrada detrás del escritorio de la mesa.
+- **Favicon Oficial:**
+  - Actualizado el icono de la pestaña en [index.html](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/index.html#L16) utilizando directamente el logotipo de la marca personal ([imagenes/logoHome.png](file:///d:/PROGRAMACION/WEB%20PERSONAL/danibeas3.github.io/imagenes/logoHome.png)).
 
 ### 🛠️ Compatibilidad
 - **Soporte ES Modules:**
