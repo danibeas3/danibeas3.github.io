@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const navMenu = document.getElementById("nav-menu");
   const menuLinks = document.querySelectorAll(".menu a");
   const mainHeader = document.getElementById("main-header");
+  const headerLogo = mainHeader?.querySelector(".logo img");
+  const originalLogo = headerLogo?.src;
+  const contactLogo = new URL('../imagenes/logo-contacto.png', import.meta.url).href;
+  const brownContactLogo = new URL('../imagenes/logo-contacto-marron.png', import.meta.url).href;
   const sections = document.querySelectorAll("section[id]");
 
   if (menuToggle && navMenu) {
@@ -66,6 +70,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (mainHeader) {
       mainHeader.setAttribute("data-theme", currentSectionId);
+      if (headerLogo) {
+        const useCoralLogo = currentSectionId === "escenario4" &&
+          document.getElementById("escenario4")?.classList.contains("modo-salmon");
+        const logoSrc = currentSectionId === "escenario5" ? brownContactLogo :
+          (useCoralLogo ? contactLogo : originalLogo);
+        if (headerLogo.src !== logoSrc) headerLogo.src = logoSrc;
+      }
     }
 
     menuLinks.forEach((link) => {
@@ -198,11 +209,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if (tramo) {
         escenario4.style.backgroundImage = "none";
         escenario4.style.backgroundColor = tramo.fondo;
+        escenario4.classList.toggle("modo-anochecer", tramo.fondo === "#7A6A8E");
+        escenario4.classList.toggle("modo-salmon", tramo.fondo === "#E8B4A0");
         if (tramo.oscuro) {
           escenario4.classList.add("modo-oscuro");
         } else {
           escenario4.classList.remove("modo-oscuro");
         }
+        onScroll();
       }
     }
 

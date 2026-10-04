@@ -111,6 +111,7 @@ a {
 }
 
 .logo img {
+  width: 98px;
   max-width: 140px;
   height: auto;
   transition: transform 0.3s ease;
@@ -2106,6 +2107,17 @@ button[type="submit"]:hover {
 #escenario4.modo-oscuro .globo-item:hover .globo-badge {
   background: #7459A0;
   color: #FFFFFF;
+}
+
+/* Contraste de los botones sobre el cielo morado de las 21:00 a las 23:00. */
+#escenario4.modo-anochecer .globo-badge {
+  background: #F8EEDD;
+  color: #473A5C;
+  box-shadow: none;
+}
+#escenario4.modo-anochecer .globo-item:hover .globo-badge {
+  background: #EDE0F5;
+  color: #3A2650;
 }
 
 .globo-badge {
