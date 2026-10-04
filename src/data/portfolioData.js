@@ -7,15 +7,15 @@ export const categoriasPortfolio = [
   {
     id: "web",
     titulo: "Proyectos Web",
-    subtitulo: "Diseño y desarrollo web a medida & CMS",
+    subtitulo: "Diseño y desarrollo web a medida",
     icono: "🌐",
     colorClass: "globo-azul",
     badgeColor: "#3498db"
   },
   {
     id: "youtube",
-    titulo: "YouTube & Contenido",
-    subtitulo: "Canales, tutoriales y divagación técnica",
+    titulo: "YouTube & Media",
+    subtitulo: "Canales y proyectos audiovisuales",
     icono: "🎥",
     colorClass: "globo-naranja",
     badgeColor: "#e67e22"
@@ -43,13 +43,23 @@ export const proyectosPortfolio = [
   {
     id: "fichaje",
     categoriaId: "software",
-    titulo: "Control de Fichaje y Empleados",
+    titulo: "portalEmp",
     subtitulo: "Sistema web de gestión de jornada laboral y fichajes",
     descripcion: "Aplicación web completa para registro de horario laboral, gestión de ausencias, vacaciones, horas extraordinarias y partes de trabajo. Incluye módulo de administración, reportes detallados y generación de PDF justificativos.",
     tags: ["PHP 8", "MySQL", "JavaScript", "CSS3", "TCPDF"],
     imagen: "imagenes/21.png",
     demoUrl: "#",
     githubUrl: "#",
+    destacado: true
+  },
+  {
+    id: "portal-doc",
+    categoriaId: "software",
+    titulo: "portalDoc",
+    subtitulo: "Gestión de presencia, horas y facturación\nde profesores autónomos en centros escolares",
+    descripcion: "Aplicación para controlar la presencia de profesores autónomos en centros escolares, registrar las horas realizadas y gestionar su facturación.",
+    tags: ["Presencia", "Horas", "Facturación"],
+    demoUrl: "#",
     destacado: true
   },
   {
@@ -67,42 +77,55 @@ export const proyectosPortfolio = [
 
   // --- PROYECTOS WEB ---
   {
-    id: "web-personal",
-    categoriaId: "web",
-    titulo: "DaniRuizWeb – Portfolio Ilustrado",
-    subtitulo: "Sitio web personal interactivo por escenarios",
-    descripcion: "Web personal construida con maquetación por escenarios temáticos, micro-animaciones en CSS puro y diseño adaptativo responsivo.",
-    tags: ["HTML5", "CSS3 Grid/Flexbox", "JavaScript Vanilla", "Vite"],
-    imagen: "imagenes/logoHome.png",
-    demoUrl: "#escenario1",
-    githubUrl: "#",
-    destacado: true
+    id: 'beas-guadix', categoriaId: 'web', titulo: 'Beas de Guadix',
+    subtitulo: 'Web turística e informativa\ndel municipio',
+    tags: ['WordPress', 'Contenido'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/beas-guadix-atardecer.png', import.meta.url).href,
+    demoUrl: 'http://beasdeguadix.com/'
   },
   {
-    id: "web-corporativa",
-    categoriaId: "web",
-    titulo: "Sitio Web Empresarial & WordPress",
-    subtitulo: "Diseño corporativo con optimización SEO y UX/UI",
-    descripcion: "Implementación de sitio web responsive enfocado en conversión, alta velocidad de carga y panel autogestionable para el cliente.",
-    tags: ["WordPress", "Elementor Pro", "SASS", "SEO Local"],
-    imagen: "imagenes/22.png",
-    demoUrl: "#",
-    destacado: false
+    id: 'cronista-web', categoriaId: 'web', titulo: 'El Cronista Errante',
+    subtitulo: 'Sitio web de El Cronista Errante',
+    tags: ['Web'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/el-cronista-usuario.png', import.meta.url).href,
+    demoUrl: 'https://elcronistaerrante.com/'
   },
-
-  // --- CANALES DE YOUTUBE & CONTENIDO ---
   {
-    id: "canal-tech",
-    categoriaId: "youtube",
-    titulo: "Canal de YouTube Tecnológico",
-    subtitulo: "Divulgación de Sistemas IT, Redes y Desarrollo Web",
-    descripcion: "Canal enfocado en tutoriales prácticos sobre administración de servidores, resolución de incidencias en Windows/Linux, consejos de hardware y programación web.",
-    tags: ["YouTube", "Vídeo Editing", "Tutoriales IT", "OBS Studio"],
-    imagen: "imagenes/RedesSociales.png",
-    demoUrl: "https://youtube.com",
-    destacado: true
+    id: 'estacion-diseno', categoriaId: 'web', titulo: 'Estación Diseño',
+    subtitulo: 'Sitio web corporativo\nFormación oficial y másteres',
+    tags: ['WordPress', 'Elementor'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/estacion-diseno-usuario.png', import.meta.url).href,
+    demoUrl: 'https://estaciondiseno.es/'
   },
-
+  {
+    id: 'grupo-efp', categoriaId: 'web', titulo: 'Grupo EFP',
+    subtitulo: 'Sitio web corporativo\nFormación para el empleo',
+    tags: ['WordPress', 'Plesk'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/grupo-efp-usuario.png', import.meta.url).href,
+    demoUrl: 'https://escueladeformacionprofesional.com/'
+  },
+  {
+    id: 'arto-blanco', categoriaId: 'web', titulo: 'Arto Blanco',
+    subtitulo: 'Web de apartamentos\nturísticos en Agua Amarga',
+    tags: ['WordPress', 'Reservas'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/arto-blanco-usuario.png', import.meta.url).href,
+    demoUrl: 'https://alojamiento-almeria.com/nueva/'
+  },
+  // --- CANALES DE YOUTUBE ---
+  {
+    id: 'el-cronista', categoriaId: 'youtube', titulo: 'El Cronista',
+    subtitulo: 'El Cronista Errante',
+    tags: ['YouTube', 'Lore'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/el-cronista-usuario.png', import.meta.url).href,
+    demoUrl: 'https://www.youtube.com/@ElCronistaErranteLore'
+  },
+  {
+    id: 'dr-tutoriales', categoriaId: 'youtube', titulo: 'DR Tutoriales',
+    subtitulo: 'Mi canal de tutoriales',
+    tags: ['YouTube', 'Tutoriales'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/dr-tutoriales-usuario.png', import.meta.url).href,
+    demoUrl: 'https://www.youtube.com/@danibeas3'
+  },
   // --- SISTEMAS & REDES IT ---
   {
     id: "servidor-nas",

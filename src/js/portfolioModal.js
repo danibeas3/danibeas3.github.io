@@ -1,132 +1,103 @@
 import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js';
+import { portfolioArtwork, portfolioCategoryIcon } from './portfolioArtwork.js';
 
 export function initPortfolioModal() {
-  const modalOverlay = document.getElementById("portfolio-modal");
-  const modalBody = document.getElementById("modal-projects-list");
-  const modalCategoryTitle = document.getElementById("modal-category-title");
-  const modalCategoryDesc = document.getElementById("modal-category-desc");
-  const modalTabs = document.getElementById("modal-tabs");
-  const btnCloseModal = document.getElementById("btn-close-modal");
+  const overlay = document.getElementById('portfolio-modal');
+  const list = document.getElementById('modal-projects-list');
+  const title = document.getElementById('modal-category-title');
+  const description = document.getElementById('modal-category-desc');
+  const pagination = document.getElementById('modal-tabs');
+  const closeButton = document.getElementById('btn-close-modal');
+  if (!overlay || !list) return;
+  const mobileLayout = window.matchMedia('(max-width: 900px)');
+  let pageSize = mobileLayout.matches ? 1 : 4;
+  let category;
+  let projects = [];
+  let page = 0;
+  let opener;
+  let previousOverflow;
 
-  if (!modalOverlay || !modalBody) return;
-
-  // Renderizar pestañas de categorías dentro del modal
-  function renderCategoryTabs(activeCategoryId) {
-    if (!modalTabs) return;
-    modalTabs.innerHTML = categoriasPortfolio
-      .map(
-        (cat) => `
-        <button 
-          class="tab-btn ${cat.id === activeCategoryId ? "active" : ""}" 
-          data-category="${cat.id}">
-          <span class="tab-icon">${cat.icono}</span>
-          <span class="tab-title">${cat.titulo}</span>
-        </button>
-      `
-      )
-      .join("");
-
-    // Event listeners para cambiar de pestaña
-    modalTabs.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const catId = btn.getAttribute("data-category");
-        openCategoryModal(catId);
-      });
-    });
-  }
-
-  // Abrir modal con la categoría especificada
-  function openCategoryModal(categoryId) {
-    const categoria = categoriasPortfolio.find((c) => c.id === categoryId) || categoriasPortfolio[0];
-    const proyectos = proyectosPortfolio.filter((p) => p.categoriaId === categoryId);
-
-    // Actualizar encabezado del modal
-    if (modalCategoryTitle) {
-      modalCategoryTitle.innerHTML = `${categoria.icono} ${categoria.titulo}`;
-    }
-    if (modalCategoryDesc) {
-      modalCategoryDesc.textContent = categoria.subtitulo;
-    }
-
-    // Renderizar pestañas
-    renderCategoryTabs(categoryId);
-
-    // Renderizar tarjetas de subproyectos
-    if (proyectos.length === 0) {
-      modalBody.innerHTML = `
-        <div class="modal-empty">
-          <p>Próximamente se añadirán más proyectos a esta sección.</p>
-        </div>
-      `;
-    } else {
-      modalBody.innerHTML = proyectos
-        .map(
-          (proj) => `
-          <article class="project-card">
-            <div class="project-card-header">
-              <div class="project-card-icon">
-                <img src="${proj.imagen}" alt="${proj.titulo}" onerror="this.src='imagenes/logoHome.png'">
-              </div>
-              <div class="project-card-titles">
-                <h3>${proj.titulo}</h3>
-                <span class="project-card-sub">${proj.subtitulo}</span>
-              </div>
-            </div>
-            
-            <p class="project-card-desc">${proj.descripcion}</p>
-
-            <div class="project-card-tags">
-              ${proj.tags.map((tag) => `<span class="tag-pill">${tag}</span>`).join("")}
-            </div>
-
-            ${
-              proj.demoUrl && proj.demoUrl !== "#"
-                ? `<div class="project-card-actions">
-                    <a href="${proj.demoUrl}" target="_blank" rel="noopener noreferrer" class="btn-project-link">Ver Proyecto &rarr;</a>
-                   </div>`
-                : ""
-            }
-          </article>
-        `
-        )
-        .join("");
-    }
-
-    // Mostrar modal
-    modalOverlay.classList.add("active");
-    document.body.style.overflow = "hidden"; // Prevenir scroll de fondo
-  }
-
-  // Cerrar modal
-  function closeModal() {
-    modalOverlay.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  // Event Listeners para globos en el Escenario 4
-  const globosElements = document.querySelectorAll("[data-category]");
-  globosElements.forEach((globo) => {
-    globo.addEventListener("click", (e) => {
-      e.preventDefault();
-      const catId = globo.getAttribute("data-category");
-      openCategoryModal(catId);
-    });
-  });
-
-  // Event Listeners para cerrar
-  if (btnCloseModal) {
-    btnCloseModal.addEventListener("click", closeModal);
-  }
-
-  modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-      closeModal();
+  mobileLayout.addEventListener('change', () => {
+    const firstProject = page * pageSize;
+    pageSize = mobileLayout.matches ? 1 : 4;
+    page = Math.floor(firstProject / pageSize);
+    if (overlay.classList.contains('active')) {
+      renderPage();
+      closeButton.focus();
     }
   });
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
-      closeModal();
+  function renderPage() {
+    const pageCount = Math.ceil(projects.length / pageSize);
+    const visibleProjects = projects.slice(page * pageSize, (page + 1) * pageSize);
+    overlay.dataset.projectCount = Math.min(projects.length, pageSize);
+    list.innerHTML = visibleProjects.length ? visibleProjects.map(p => {
+      const hasLink = p.demoUrl && p.demoUrl !== '#';
+      const artwork = p.imagenIlustrada ? `<img src="${p.imagenIlustrada}" alt="" loading="eager">` : portfolioArtwork(p);
+      const label = category.id === 'youtube' ? 'Ver en YouTube' : 'Ver proyecto';
+      return `<article class="project-card">
+        <div class="project-artwork">${artwork}</div>
+        <h3>${p.titulo}</h3>
+        <p class="project-card-sub">${p.subtitulo}</p>
+        <div class="project-card-tags">${p.tags.map(t => `<span class="tag-pill">${t}</span>`).join('')}</div>
+        ${hasLink ? `<a class="btn-project-link" href="${p.demoUrl}" target="_blank" rel="noopener noreferrer">${label} <span aria-hidden="true">→</span></a>` : `<span class="btn-project-link pending-link" aria-label="${label}: enlace pendiente">${label} <span aria-hidden="true">→</span></span>`}
+      </article>`;
+    }).join('') : '<p class="modal-empty">Próximamente se añadirán más proyectos a esta sección.</p>';
+    pagination.setAttribute('aria-label', `Páginas de ${category.titulo}`);
+    pagination.hidden = pageCount <= 1;
+    pagination.innerHTML = Array.from({length: pageCount}, (_, index) => `<button class="tab-btn ${index === page ? 'active' : ''}" data-page="${index}" aria-label="Página ${index + 1} de ${pageCount}" ${index === page ? 'aria-current="page"' : ''}><span class="tab-title">${index + 1}</span></button>`).join('');
+    list.scrollTop = 0;
+  }
+
+  function openCategory(categoryId) {
+    category = categoriasPortfolio.find(c => c.id === categoryId) || categoriasPortfolio[0];
+    projects = proyectosPortfolio.filter(p => p.categoriaId === category.id);
+    page = 0;
+    if (!overlay.classList.contains('active')) {
+      opener = document.activeElement;
+      previousOverflow = document.body.style.overflow;
+    }
+    overlay.dataset.category = category.id;
+    title.innerHTML = `<span class="modal-category-icon" aria-hidden="true">${portfolioCategoryIcon(category.id)}</span><span>${category.titulo}</span>`;
+    description.textContent = category.subtitulo;
+    renderPage();
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeButton.focus();
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = previousOverflow || '';
+    opener?.focus();
+  }
+  document.querySelectorAll('#escenario4 [data-category]').forEach(balloon => {
+    balloon.addEventListener('click', event => {
+      event.preventDefault();
+      openCategory(balloon.dataset.category);
+    });
+  });
+  pagination.addEventListener('click', event => {
+    const button = event.target.closest('[data-page]');
+    if (!button) return;
+    page = Number(button.dataset.page);
+    renderPage();
+    pagination.querySelector(`[data-page="${page}"]`).focus();
+  });
+  closeButton.addEventListener('click', close);
+  overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
+  document.addEventListener('keydown', event => {
+    if (!overlay.classList.contains('active')) return;
+    if (event.key === 'Escape') close();
+    if (event.key === 'Tab') {
+      const focusables = [...overlay.querySelectorAll('button, a[href]')].filter(el => el.getClientRects().length);
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first.focus();
+      }
     }
   });
 }

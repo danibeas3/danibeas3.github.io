@@ -409,7 +409,7 @@
   <!-- ================================
        MODAL EXPLORADOR DE PROYECTOS
   ================================ -->
-  <div id="portfolio-modal" class="modal-overlay" role="dialog" aria-modal="true">
+  <div id="portfolio-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-category-title" aria-describedby="modal-category-desc">
     <div class="modal-container">
       <button id="btn-close-modal" class="btn-close-modal" aria-label="Cerrar ventana">&times;</button>
       
@@ -418,8 +418,8 @@
         <p id="modal-category-desc">Explora los proyectos de esta sección</p>
       </div>
 
-      <!-- Pestañas de categorías -->
-      <div id="modal-tabs" class="modal-tabs"></div>
+      <!-- Paginación de proyectos de la categoría abierta -->
+      <nav id="modal-tabs" class="modal-tabs" aria-label="Páginas de proyectos" hidden></nav>
 
       <!-- Contenedor con scroll para tarjetas de proyectos -->
       <div id="modal-projects-list" class="modal-projects-list"></div>
