@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portaldoc-contact",
+  "account_id": "d99c27ce9b80c2d297f1a678f49906c9",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-05",
+  "workers_dev": true,
+  "preview_urls": false,
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "202610051",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ],
+  "vars": {
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFOQ6Gg9RJF_aXlw"
+  },
+  "observability": {
+    "enabled": false
+  }
+}
