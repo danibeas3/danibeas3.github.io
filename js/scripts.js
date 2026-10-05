@@ -1,4 +1,4 @@
-import { initPortfolioModal } from '../src/js/portfolioModal.js';
+import { initPortfolioModal } from '../src/js/portfolioModal.js?v=portaldoc-20261005';
 
 document.addEventListener("DOMContentLoaded", function () {
   // 1. INICIALIZACIÓN DEL VISOR MODAL DE PORTFOLIO
