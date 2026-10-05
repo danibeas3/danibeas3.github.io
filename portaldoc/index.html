@@ -13,7 +13,7 @@
   <link rel="canonical" href="https://portaldoc.daniruiz.com/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./portaldoc.css">
-  <link rel="stylesheet" href="./commercial.css">
+  <link rel="stylesheet" href="./commercial.css?v=contacto-20261005">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -69,14 +69,16 @@
         <h3>Solicita información</h3><p class="form-intro">Un poco de contexto para empezar.</p>
         <div class="form-grid"><label>Tu nombre <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="100" placeholder="¿Cómo te llamas?"></label><label>Centro de formación <span aria-hidden="true">*</span><input name="centre" autocomplete="organization" required maxlength="150" placeholder="Nombre del centro"></label><label>Correo de contacto <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required maxlength="150" placeholder="tu@centro.es"></label><label>Docentes colaboradores<select name="teachers"><option value="Por concretar">Selecciona una opción</option><option>De 1 a 10</option><option>De 11 a 30</option><option>Más de 30</option></select></label></div>
         <label>¿Qué te gustaría simplificar?<textarea name="message" rows="3" maxlength="2000" placeholder="Presencia, revisión de horas, tutorías, documentación…"></textarea></label>
-        <button class="button" type="submit">Preparar mi consulta <span aria-hidden="true">↗</span></button>
-        <p class="form-note">Prepararemos un correo con estos datos para que lo revises y envíes desde tu aplicación de correo. Este formulario no guarda ni envía información automáticamente.</p>
-        <div class="enquiry-result" id="enquiry-result" hidden><p id="enquiry-status" role="status"></p><a class="button" id="enquiry-email">Abrir correo para enviar <span aria-hidden="true">↗</span></a><small>La consulta se envía cuando pulses enviar en tu correo.</small></div>
-        <noscript><p class="form-note">Para preparar la consulta, activa JavaScript o escribe directamente a <a href="mailto:contacto@daniruiz.com">contacto@daniruiz.com</a>.</p></noscript>
+        <label class="form-trap" aria-hidden="true">Sitio web<input name="website" tabindex="-1" autocomplete="off" maxlength="200"></label>
+        <div id="contact-verification" aria-label="Verificación antispam"></div>
+        <button class="button" type="submit" id="enquiry-submit" disabled>Preparando envío…</button>
+        <p class="form-note">Enviarás tu consulta directamente a Dani Ruiz. Usaré tus datos para responder a tu solicitud. No los añadiré a listas comerciales.</p>
+        <div class="enquiry-result" id="enquiry-result" hidden><p id="enquiry-status" role="status" aria-live="polite" tabindex="-1"></p></div>
+        <noscript><p class="form-note">Para enviar la consulta, activa JavaScript o escribe directamente a <a href="mailto:contacto@daniruiz.com">contacto@daniruiz.com</a>.</p></noscript>
       </form>
     </section>
   </main>
   <footer class="container"><a class="brand" href="#"><span class="brand-symbol mini" aria-hidden="true"><i></i></span>Portal<span>Doc</span></a><p>La gestión docente, sin complicaciones.</p><a href="https://daniruiz.com/">Un proyecto de Dani Ruiz <span aria-hidden="true">↗</span></a><small>Vistas recreadas del producto con datos ficticios.</small></footer>
-  <script type="module" src="./portaldoc.js"></script>
+  <script type="module" src="./portaldoc.js?v=contacto-20261005"></script>
 </body>
 </html>
