@@ -9,7 +9,8 @@ Primera versión de presentación comercial, en HTML, CSS y JavaScript estático
 - Las cifras ilustran funciones; no representan métricas comerciales o resultados de clientes.
 - Pestañas accesibles mediante flechas, Inicio y Fin. Animaciones desactivadas con `prefers-reduced-motion`.
 - Formulario de contacto preparado con nombre, empresa, correo, tamaño de plantilla y mensaje. Envío desactivado hasta conectar el servicio y Turnstile; campo trampa preparado. Alternativa explícita por correo a `contacto@daniruiz.com`. Los datos introducidos no se transmiten ni guardan.
-- Pendiente de configurar Cloudflare Pages, dominio `portalemp.daniruiz.com` y enlace desde el porfolio.
+- Publicación en Cloudflare Pages: proyecto `portalemp-daniruiz`, repositorio `danibeas3/danibeas3.github.io`, rama de producción `main`, directorio raíz `portalemp`, sin comando de compilación y salida `.`. Cada subida a `main` despliega automáticamente.
+- Dominio: `https://portalemp.daniruiz.com/`, CNAME `portalemp` → `portalemp-daniruiz.pages.dev`. Enlace desde Aplicaciones & Software del porfolio `https://daniruiz.com/`.
 
 La carpeta puede servirse directamente, como PortalDoc. También se incluye en las entradas de Vite. Verificar con `node node_modules/vite/bin/vite.js build --outDir .preview-build` desde la raíz.
 
