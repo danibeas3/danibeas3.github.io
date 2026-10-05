@@ -59,7 +59,7 @@ export const proyectosPortfolio = [
     subtitulo: "Presencia, horas y actividades\ndel profesorado autónomo",
     descripcion: "Plataforma para centros de formación que centraliza la presencia, las horas confirmadas, las tutorías, las extras y la documentación del profesorado autónomo.",
     tags: ["Presencia", "Horas", "Tutorías"],
-    demoUrl: "/portaldoc/",
+    demoUrl: "https://portaldoc.daniruiz.com/",
     destacado: true
   },
   {

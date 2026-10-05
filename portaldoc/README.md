@@ -20,8 +20,10 @@ El contacto utiliza contacto@daniruiz.com, el correo indicado para PortalDoc. La
 
 El formulario prepara un enlace `mailto:` con el contexto del centro. El visitante revisa y envía la consulta en su aplicación de correo. No hay almacenamiento ni envío automático desde la web; se ofrece también el correo directo. Las tarifas, las condiciones comerciales y la demo completa están pendientes de definir. Las vistas ilustrativas actuales permanecen disponibles.
 
-Los metadatos indican la dirección prevista `https://portaldoc.daniruiz.com/`; esto no configura el alojamiento ni DNS.
+La dirección pública y canónica es `https://portaldoc.daniruiz.com/`.
 
-## Publicación pendiente
+## Publicación en Cloudflare Pages
 
-Todavía no se han publicado los cambios ni configurado `portaldoc.daniruiz.com`. La configuración del subdominio debe hacerse al decidir su alojamiento. La landing no contiene autenticación ni lógica administrativa de la aplicación.
+Proyecto: `portaldoc-daniruiz`, conectado a `danibeas3/danibeas3.github.io`, rama `main`, con despliegues automáticos. Se publica como sitio estático sin comando de compilación: directorio raíz `portaldoc`, directorio de salida `.`. El dominio `portaldoc.daniruiz.com` apunta mediante CNAME a `portaldoc-daniruiz.pages.dev`.
+
+El porfolio mantiene su proyecto Pages independiente (`danibeas3-github-io`) y enlaza a la dirección pública de PortalDoc. Ambos se actualizan al subir cambios a `main`. La landing no contiene autenticación ni lógica administrativa de la aplicación.
