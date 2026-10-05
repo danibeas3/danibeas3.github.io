@@ -56,10 +56,10 @@ export const proyectosPortfolio = [
     id: "portal-doc",
     categoriaId: "software",
     titulo: "portalDoc",
-    subtitulo: "Gestión de presencia, horas y facturación\nde profesores autónomos en centros escolares",
-    descripcion: "Aplicación para controlar la presencia de profesores autónomos en centros escolares, registrar las horas realizadas y gestionar su facturación.",
-    tags: ["Presencia", "Horas", "Facturación"],
-    demoUrl: "#",
+    subtitulo: "Presencia, horas y actividades\ndel profesorado autónomo",
+    descripcion: "Plataforma para centros de formación que centraliza la presencia, las horas confirmadas, las tutorías, las extras y la documentación del profesorado autónomo.",
+    tags: ["Presencia", "Horas", "Tutorías"],
+    demoUrl: "/portaldoc/",
     destacado: true
   },
   {

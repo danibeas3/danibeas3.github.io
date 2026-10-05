@@ -6,3 +6,4 @@ Thumbs.db
 # Dependencias y compilados
 node_modules/
 dist/
+.preview-build/
