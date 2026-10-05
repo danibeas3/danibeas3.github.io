@@ -1,4 +1,4 @@
-import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js?v=portaldoc-20261005';
+import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js?v=productos-20261005';
 import { portfolioArtwork, portfolioCategoryIcon } from './portfolioArtwork.js';
 
 export function initPortfolioModal() {

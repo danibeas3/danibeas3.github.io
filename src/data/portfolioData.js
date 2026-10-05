@@ -43,12 +43,12 @@ export const proyectosPortfolio = [
   {
     id: "fichaje",
     categoriaId: "software",
-    titulo: "portalEmp",
+    titulo: "PortalEmp",
     subtitulo: "Sistema web de gestión de jornada laboral y fichajes",
-    descripcion: "Aplicación web completa para registro de horario laboral, gestión de ausencias, vacaciones, horas extraordinarias y partes de trabajo. Incluye módulo de administración, reportes detallados y generación de PDF justificativos.",
+    descripcion: "Plataforma para registrar, gestionar, analizar y documentar la jornada laboral. Centraliza empleados, fichajes, ausencias, documentación, nóminas e informes para RR. HH. y Dirección.",
     tags: ["PHP 8", "MySQL", "JavaScript", "CSS3", "TCPDF"],
     imagen: "imagenes/21.png",
-    demoUrl: "#",
+    demoUrl: "https://portalemp.daniruiz.com/",
     githubUrl: "#",
     destacado: true
   },
