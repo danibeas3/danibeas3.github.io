@@ -31,13 +31,89 @@ tabs.forEach((tab,index) => {
   });
 });
 selectView(tabs[0]);
-// Until the sending service is connected, never submit contact data or imply delivery.
-document.querySelector('#enquiry-form').addEventListener('submit',event=>{
+const enquiryForm = document.querySelector('#enquiry-form');
+const contactAPI = 'https://portaldoc-contact.dani-ruizporcel.workers.dev';
+const enquiryButton = document.querySelector('#enquiry-submit');
+const enquiryResult = document.querySelector('#enquiry-result');
+const enquiryStatus = document.querySelector('#enquiry-status');
+let widgetId;
+let sending = false;
+let completed = false;
+function feedback(message, state = 'error') {
+  enquiryStatus.textContent = message;
+  enquiryResult.dataset.state = state;
+  enquiryResult.hidden = false;
+}
+async function initialiseContact() {
+  try {
+    const response = await fetch(`${contactAPI}/config`, {signal:AbortSignal.timeout(10000)});
+    if (!response.ok) throw new Error('configuration');
+    const {siteKey} = await response.json();
+    if (!siteKey) throw new Error('configuration');
+    await new Promise((resolve,reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.append(script);
+    });
+    document.querySelector('#contact-verification').hidden = false;
+    widgetId = window.turnstile.render('#contact-verification', {
+      sitekey:siteKey,action:'contact',theme:'light',size:'flexible',
+      callback:() => {
+        if (sending || completed) return;
+        enquiryButton.disabled = false;
+        enquiryButton.textContent = 'Enviar consulta ↗';
+      },
+      'expired-callback':() => {
+        enquiryButton.disabled = true;
+        enquiryButton.textContent = 'Verificando…';
+        window.turnstile.reset(widgetId);
+      },
+      'error-callback':() => {
+        enquiryButton.disabled = true;
+        feedback('No se ha podido completar la verificación antispam. Recarga la página o escribe a contacto@daniruiz.com.');
+      }
+    });
+    enquiryButton.textContent = 'Verificando…';
+  } catch {
+    enquiryButton.textContent = 'Envío no disponible';
+    feedback('El envío directo no está disponible temporalmente. Puedes escribir a contacto@daniruiz.com.');
+  }
+}
+enquiryForm.addEventListener('submit', async event => {
   event.preventDefault();
-  const status=document.querySelector('#enquiry-status');
-  status.textContent='El envío directo todavía no está conectado. Puedes escribir a contacto@daniruiz.com.';
-  status.hidden=false;
+  if (sending || completed || !enquiryForm.reportValidity()) return;
+  const token = window.turnstile?.getResponse(widgetId);
+  if (!token) { feedback('Completa la verificación antispam antes de enviar.'); return; }
+  const formData = new FormData(enquiryForm);
+  const data = Object.fromEntries(['name','company','email','employees','message','website'].map(key => [key,String(formData.get(key) || '').trim()]));
+  data.token = token;
+  sending = true;
+  enquiryButton.disabled = true;
+  enquiryButton.textContent = 'Enviando consulta…';
+  enquiryForm.setAttribute('aria-busy','true');
+  enquiryResult.hidden = true;
+  try {
+    const response = await fetch(`${contactAPI}/contact`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:AbortSignal.timeout(25000)});
+    const result = await response.json();
+    if (!response.ok || result.success !== true) throw new Error(result.error || 'No se ha podido confirmar el envío. Prueba más tarde.');
+    completed = true;
+    feedback(result.message,'success');
+    enquiryButton.textContent = 'Consulta enviada ✓';
+    enquiryForm.querySelectorAll('input,textarea,select').forEach(field => field.disabled = true);
+  } catch (error) {
+    feedback(error.name === 'TimeoutError' || error.name === 'TypeError' ? 'La conexión se ha interrumpido y no podemos confirmar el envío. Espera antes de intentarlo de nuevo o escribe a contacto@daniruiz.com.' : error.message);
+    window.turnstile.reset(widgetId);
+    enquiryButton.textContent = 'Verificando…';
+  } finally {
+    sending = false;
+    enquiryForm.removeAttribute('aria-busy');
+    enquiryStatus.focus({preventScroll:true});
+  }
 });
+initialiseContact();
 if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.08});
   document.querySelectorAll('.section-head,.feature,.precision-grid,.report-layout,.document-grid,.employee-grid,.trust-grid,.insight').forEach(element=>{element.classList.add('reveal');observer.observe(element);});

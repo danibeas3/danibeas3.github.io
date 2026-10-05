@@ -8,7 +8,7 @@ Primera versión de presentación comercial, en HTML, CSS y JavaScript estático
 - `assets/direccion-anonimizada.png` deriva de la captura de indicadores de gestión suministrada por el propietario. Se editó mediante el generador de imágenes integrado para sustituir todas las identidades y DNI; se revisó visualmente antes de incorporarla. La landing identifica expresamente la captura como editada. No se incluyen los originales con datos personales.
 - Las cifras ilustran funciones; no representan métricas comerciales o resultados de clientes.
 - Pestañas accesibles mediante flechas, Inicio y Fin. Animaciones desactivadas con `prefers-reduced-motion`.
-- Formulario de contacto preparado con nombre, empresa, correo, tamaño de plantilla y mensaje. Envío desactivado hasta conectar el servicio y Turnstile; campo trampa preparado. Alternativa explícita por correo a `contacto@daniruiz.com`. Los datos introducidos no se transmiten ni guardan.
+- Formulario conectado al servicio compartido de PortalDoc y PortalEmp: envío HTML morado y texto plano al destinatario fijo configurado en Cloudflare, con Reply-To del visitante. Turnstile valida el hostname propio y la acción contact, campo trampa, validación de tamaño y campos, y límite de cinco intentos por IP/minuto. Secretos solo en Cloudflare.
 - Publicación en Cloudflare Pages: proyecto `portalemp-daniruiz`, repositorio `danibeas3/danibeas3.github.io`, rama de producción `main`, directorio raíz `portalemp`, sin comando de compilación y salida `.`. Cada subida a `main` despliega automáticamente.
 - Dominio: `https://portalemp.daniruiz.com/`, CNAME `portalemp` → `portalemp-daniruiz.pages.dev`. Enlace desde Aplicaciones & Software del porfolio `https://daniruiz.com/`.
 

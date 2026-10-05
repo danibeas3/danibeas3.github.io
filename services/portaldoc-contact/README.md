@@ -1,6 +1,6 @@
-# Formulario de PortalDoc
+# Formularios de PortalDoc y PortalEmp
 
-Worker de correo para la landing `https://portaldoc.daniruiz.com`.
+Worker compartido para `https://portaldoc.daniruiz.com` y `https://portalemp.daniruiz.com`. El origen permitido determina el producto, los campos y la plantilla; el token debe coincidir con el hostname de ese producto. PortalEmp recibe una plantilla morada con empresa, tamaño del equipo y mensaje.
 
 ## Configuración
 

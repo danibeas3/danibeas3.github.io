@@ -8,6 +8,31 @@ const setup = () => {
   return {sent,env:{EMAIL:{send:async email => {sent.push(email);}},RATE_LIMITER:{limit:async () => ({success:true})},TURNSTILE_SECRET:'test-secret',TURNSTILE_SITE_KEY:'test-site-key',CONTACT_RECIPIENT:'owner@example.com'}};
 };
 const verify = async () => Response.json({success:true,hostname:'portaldoc.daniruiz.com',action:'contact'});
+const empData = {name:'Contacto Ejemplo',company:'Empresa <Ejemplo>',email:'prueba@example.com',employees:'De 31 a 100',message:'Consulta <script>no ejecutar</script>\nSegunda línea',website:'',token:'valid-token'};
+test('PortalEmp sends branded escaped email and rejects cross-site tokens',async () => {
+  const {env,sent} = setup();
+  const empRequest = () => request(empData,'https://portalemp.daniruiz.com');
+  assert.equal((await handle(empRequest(),env,verify)).status,400);
+  assert.equal(sent.length,0);
+  const response = await handle(empRequest(),env,async()=>Response.json({success:true,hostname:'portalemp.daniruiz.com',action:'contact'}));
+  assert.equal(response.status,200);
+  assert.equal(response.headers.get('Access-Control-Allow-Origin'),'https://portalemp.daniruiz.com');
+  assert.equal(sent[0].subject,'Nueva consulta sobre PortalEmp');
+  assert.equal(sent[0].to,'owner@example.com');
+  assert.equal(sent[0].replyTo,empData.email);
+  assert.ok(sent[0].html.includes('Empresa &lt;Ejemplo&gt;'));
+  assert.ok(!sent[0].html.includes('<script>'));
+  assert.ok(sent[0].text.includes('Personas en el equipo: De 31 a 100'));
+});
+test('PortalEmp schema, honeypot and rate limit fail closed',async()=>{
+  const {env,sent} = setup();
+  for (const value of [{...empData,company:''},{...empData,employees:'100000'},{...empData,website:'spam'},{...empData,email:'x@example.com\nBcc:evil@example.com'}]) {
+    assert.equal((await handle(request(value,'https://portalemp.daniruiz.com'),env,verify)).status,400);
+  }
+  env.RATE_LIMITER.limit=async()=>({success:false});
+  assert.equal((await handle(request(empData,'https://portalemp.daniruiz.com'),env,verify)).status,429);
+  assert.equal(sent.length,0);
+});
 test('valid enquiry sends one escaped email to fixed owner with reply-to',async () => {
   const {env,sent} = setup();
   assert.equal((await handle(request(),env,verify)).status,200);
