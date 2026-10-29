@@ -111,6 +111,14 @@ export const proyectosPortfolio = [
     imagenIlustrada: new URL('../../imagenes/portfolio/arto-blanco-usuario.png', import.meta.url).href,
     demoUrl: 'https://alojamiento-almeria.com/nueva/'
   },
+  {
+    id: 'puerta-alcala', categoriaId: 'web', titulo: 'Asociación Puerta de Alcalá',
+    subtitulo: 'Actividades para personas mayores\ny servicio de comedor',
+    descripcion: 'Web de una asociación para personas mayores que ofrece actividades y servicio de comedor.',
+    tags: ['Web', 'Asociación'],
+    imagenIlustrada: new URL('../../imagenes/portfolio/asociacion-puerta-alcala.png', import.meta.url).href,
+    demoUrl: 'https://asociacionpuertaalcala.es/'
+  },
   // --- CANALES DE YOUTUBE ---
   {
     id: 'el-cronista', categoriaId: 'youtube', titulo: 'El Cronista',
