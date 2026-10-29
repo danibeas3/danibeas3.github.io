@@ -1,6 +1,6 @@
 # AulaQR · Landing comercial
 
-Propuesta aprobada por el usuario el 29/10/2026, con corrección de proporción de la captura del administrador y solicitud de envío real de correo. Publicación autorizada en aulaqr.daniruiz.com. Cloudflare autorizado. Proyecto Pages aulaqr-daniruiz creado y servicio de correo desplegado conservando los secretos existentes. Dominio personalizado asociado; activación DNS pendiente de verificación.
+Propuesta aprobada por el usuario el 29/10/2026, con corrección de proporción de la captura del administrador y solicitud de envío real de correo. Publicación autorizada en aulaqr.daniruiz.com. Cloudflare autorizado. Proyecto Pages aulaqr-daniruiz creado y servicio de correo desplegado conservando los secretos existentes. Dominio personalizado asociado y CNAME aulaqr → aulaqr-daniruiz.pages.dev creado con proxy activado. Dominio activo y verificado en Pages; HTTPS responde 200.
 
 Vista previa: `http://127.0.0.1:5173/aulaqr/` con Vite desde la raíz del repositorio. `node node_modules/vite/bin/vite.js build --outDir .preview-build` compila el portfolio y las tres landings. La carpeta aulaqr también funciona como sitio estático independiente, sin compilación ni dependencias de servidor.
 
@@ -26,15 +26,15 @@ Siete capturas originales, sin recreaciones ni edición de contenido, tomadas el
 
 Las capturas se obtuvieron navegando con una cuenta de demostración; no se enviaron incidencias ni invitaciones ni se alteró el contenido de los registros. Los nombres y correos de cuentas .test pertenecen a la demo. Las imágenes solo ilustran la app; los códigos de las capturas pertenecen al entorno local.
 
-## Contacto y futura publicación
+## Contacto y publicación
 
 El formulario envía una consulta JSON al Worker de contacto ya utilizado por PortalDoc y PortalEmp. Se ha añadido AulaQR sin cambiar sus destinatarios: AULAQR_RECIPIENT es el destino exclusivo de este producto, configurado como secreto en Cloudflare. Nunca se acepta un destinatario proporcionado por el visitante. El mensaje usa HTML con tablas y estilos inline, alternativa de texto plano, marca verde petróleo/lima y Reply-To del visitante.
 
 La entrada valida campos y tamaño, cabeceras, campo trampa, límite por IP, Turnstile con hostname aulaqr.daniruiz.com y acción contact. El frontend diferencia envío confirmado, error y conexión interrumpida; impide doble envío. En localhost se muestra una vista previa sin solicitar tokens de prueba ni permitir envíos desde orígenes locales.
 
-Para completar la publicación: autorizar Cloudflare, confirmar el destinatario verificado de Email Routing, configurar AULAQR_RECIPIENT, añadir el hostname al widget Turnstile existente, desplegar el Worker conservando los otros secretos, crear Pages con raíz aulaqr/salida `.`, enlazar el subdominio y publicar la entrada del portfolio. No publicar la aplicación administrativa ni sus archivos PHP, credenciales, sesiones o base de datos.
+Configurado: destinatario verificado de Email Routing, secreto AULAQR_RECIPIENT, hostname de Turnstile, Worker publicado conservando los otros secretos y Pages con raíz aulaqr/salida `.`, vinculado al repositorio main. El portfolio enlaza al subdominio. No publicar la aplicación administrativa ni sus archivos PHP, credenciales, sesiones o base de datos.
 
-11 pruebas del servicio de correo superadas, incluidas regresiones PortalDoc/PortalEmp. Proporción de la captura comprobada: 1265/712 original frente a 629/354 renderizada, sin estiramiento. Compilación de la web correcta. La entrega real y el dominio no se dan por verificados hasta completar la autorización y el despliegue.
+11 pruebas del servicio de correo superadas, incluidas regresiones PortalDoc/PortalEmp. Proporción de la captura comprobada: 1265/712 original frente a 629/354 renderizada, sin estiramiento. Compilación de la web correcta. La recepción final del correo debe confirmarse en la bandeja de entrada; no se deduce solo de la respuesta del proveedor.
 
 ## Comprobaciones de la propuesta
 
@@ -43,6 +43,10 @@ Para completar la publicación: autorizar Cloudflare, confirmar el destinatario 
 - Galería, ampliación/cierre de capturas y selección de los tres roles.
 - Pestañas con flechas, Inicio y Fin; un único panel visible por rol.
 - Revisión visual en escritorio y móvil; sin desbordamiento horizontal a tamaños de móvil pequeño, móvil y tableta (320, 390 y 768 de viewport solicitado).
-- Entrada de AulaQR visible junto a PortalEmp, portalDoc y Gestión de Apartamentos en el portfolio local; enlace destinado al subdominio futuro, aún sin publicar.
+- Entrada de AulaQR visible junto a PortalEmp, portalDoc y Gestión de Apartamentos en el portfolio local; enlace publicado al subdominio de AulaQR.
 
 Capturas de revisión de la landing fuera del directorio público, en `../aulaqr-landing-revision` respecto al directorio padre del repositorio. Diseño y publicación aprobados por el usuario.
+
+## Verificación de publicación · 29/10/2026
+
+Landing pública en https://aulaqr.daniruiz.com/, dominio activo, verificación DNS activa y HTTPS 200. Assets publicados comprobados. Portfolio publicado con enlace al subdominio. Prueba real desde el formulario público, Turnstile de producción sin claves de prueba, con consulta expresamente marcada como prueba y correo ficticio: respuesta de envío satisfactorio y campos bloqueados para evitar duplicados. La aceptación del mensaje se confirmó en la web; la recepción en Gmail queda a confirmar por el propietario. Capturas de evidencia fuera del repositorio.
