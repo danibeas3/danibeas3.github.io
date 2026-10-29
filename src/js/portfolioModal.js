@@ -1,4 +1,4 @@
-import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js?v=proyectos-20261029-aulaqr';
+import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js?v=proyectos-20261029-aulaqr-v2';
 import { portfolioArtwork, portfolioCategoryIcon } from './portfolioArtwork.js';
 
 export function initPortfolioModal() {
