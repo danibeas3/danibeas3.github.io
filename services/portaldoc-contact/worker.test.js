@@ -8,6 +8,39 @@ const setup = () => {
   return {sent,env:{EMAIL:{send:async email => {sent.push(email);}},RATE_LIMITER:{limit:async () => ({success:true})},TURNSTILE_SECRET:'test-secret',TURNSTILE_SITE_KEY:'test-site-key',CONTACT_RECIPIENT:'owner@example.com'}};
 };
 const verify = async () => Response.json({success:true,hostname:'portaldoc.daniruiz.com',action:'contact'});
+const aulaData = {name:'Contacto de prueba',centre:'Centro <Ejemplo>',email:'prueba@example.com',message:'Consulta sobre AulaQR.\n<script>No ejecutar</script>',website:'',token:'valid-token',recipient:'attacker@example.com'};
+const aulaVerify = async () => Response.json({success:true,hostname:'aulaqr.daniruiz.com',action:'contact'});
+
+test('AulaQR sends a teal branded email only to its fixed recipient',async()=>{
+  const {env,sent}=setup();env.AULAQR_RECIPIENT='aula-owner@example.com';
+  const response=await handle(request(aulaData,'https://aulaqr.daniruiz.com'),env,aulaVerify);
+  assert.equal(response.status,200);assert.equal(sent.length,1);
+  assert.equal(sent[0].to,'aula-owner@example.com');
+  assert.equal(sent[0].replyTo,aulaData.email);
+  assert.equal(sent[0].subject,'Nueva consulta sobre AulaQR');
+  assert.ok(sent[0].html.includes('#123f49'));assert.ok(sent[0].html.includes('#d6f27c'));
+  assert.ok(sent[0].html.includes('Centro &lt;Ejemplo&gt;'));assert.ok(!sent[0].html.includes('<script>'));
+  assert.ok(sent[0].text.includes(aulaData.message));assert.ok(sent[0].html.includes('Responder a Contacto de prueba'));
+});
+
+test('AulaQR missing recipient cannot send and does not break the other products',async()=>{
+  const {env,sent}=setup();
+  assert.equal((await handle(request(aulaData,'https://aulaqr.daniruiz.com'),env,aulaVerify)).status,503);
+  assert.equal(sent.length,0);
+  assert.equal((await handle(request(),env,verify)).status,200);assert.equal(sent[0].to,'owner@example.com');
+});
+
+test('AulaQR rejects invalid fields, wrong hosts, wrong actions and local origins',async()=>{
+  const {env,sent}=setup();env.AULAQR_RECIPIENT='aula-owner@example.com';
+  for(const values of [{...aulaData,centre:''},{...aulaData,email:'a@example.com\nBcc:evil@example.com'},{...aulaData,website:'spam'},{...aulaData,token:''}]){
+    assert.equal((await handle(request(values,'https://aulaqr.daniruiz.com'),env,aulaVerify)).status,400);
+  }
+  assert.equal((await handle(request(aulaData,'http://127.0.0.1:5173'),env,aulaVerify)).status,403);
+  for(const result of [{success:true,hostname:'portalemp.daniruiz.com',action:'contact'},{success:true,hostname:'aulaqr.daniruiz.com',action:'other'}]){
+    assert.equal((await handle(request(aulaData,'https://aulaqr.daniruiz.com'),env,async()=>Response.json(result))).status,400);
+  }
+  assert.equal(sent.length,0);
+});
 const empData = {name:'Contacto Ejemplo',company:'Empresa <Ejemplo>',email:'prueba@example.com',employees:'De 31 a 100',message:'Consulta <script>no ejecutar</script>\nSegunda línea',website:'',token:'valid-token'};
 test('PortalEmp sends branded escaped email and rejects cross-site tokens',async () => {
   const {env,sent} = setup();

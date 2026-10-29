@@ -41,6 +41,17 @@ export const categoriasPortfolio = [
 export const proyectosPortfolio = [
   // --- APLICACIONES & SOFTWARE ---
   {
+    id: "aulaqr",
+    categoriaId: "software",
+    titulo: "AulaQR",
+    subtitulo: "Equipos, incidencias e historial\nconectados por QR",
+    descripcion: "Aplicación web para identificar el equipamiento de un centro por QR, comunicar incidencias y registrar intervenciones desde el móvil. Inventario por espacios, historial del equipo y permisos por rol.",
+    tags: ["QR", "Inventario", "Incidencias"],
+    imagenIlustrada: new URL('../../aulaqr/assets/pasaporte.png', import.meta.url).href,
+    demoUrl: "https://aulaqr.daniruiz.com/",
+    destacado: true
+  },
+  {
     id: "fichaje",
     categoriaId: "software",
     titulo: "PortalEmp",

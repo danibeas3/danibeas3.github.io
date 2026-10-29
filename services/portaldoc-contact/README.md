@@ -1,4 +1,4 @@
-# Formularios de PortalDoc y PortalEmp
+# Formularios de PortalDoc, PortalEmp y AulaQR
 
 Worker compartido para `https://portaldoc.daniruiz.com` y `https://portalemp.daniruiz.com`. El origen permitido determina el producto, los campos y la plantilla; el token debe coincidir con el hostname de ese producto. PortalEmp recibe una plantilla morada con empresa, tamaño del equipo y mensaje.
 
@@ -24,3 +24,7 @@ La landing continúa publicándose automáticamente desde GitHub a Pages. El Wor
 El límite nativo de Cloudflare es aproximado y se aplica por ubicación de Cloudflare. Turnstile aporta la comprobación adicional; ningún filtro garantiza eliminar todo el spam.
 
 Prueba de aceptación: usar la landing pública, una consulta marcada como prueba y un correo ficticio `prueba@example.com`. No usar claves de prueba Turnstile en producción ni desactivar validación para probar envíos.
+
+## AulaQR
+
+AulaQR utiliza exclusivamente el secreto AULAQR_RECIPIENT sin cambiar los destinatarios de los otros productos. Su plantilla HTML y texto plano incluye nombre, centro, correo y mensaje, con colores de AulaQR y Reply-To del visitante. Turnstile exige aulaqr.daniruiz.com. Desplegar con `wrangler deploy --keep-vars`.

@@ -7,3 +7,6 @@ Thumbs.db
 node_modules/
 dist/
 .preview-build/
+
+# Maqueta local del correo; nunca se publica
+/aulaqr/.correo-preview.html
