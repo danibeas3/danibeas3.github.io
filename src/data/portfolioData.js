@@ -58,7 +58,7 @@ export const proyectosPortfolio = [
     subtitulo: "Sistema web de gestión de jornada laboral y fichajes",
     descripcion: "Plataforma para registrar, gestionar, analizar y documentar la jornada laboral. Centraliza empleados, fichajes, ausencias, documentación, nóminas e informes para RR. HH. y Dirección.",
     tags: ["PHP 8", "MySQL", "JavaScript", "CSS3", "TCPDF"],
-    imagen: "imagenes/21.png",
+    imagenIlustrada: new URL('../../imagenes/portfolio/portalemp-logo.png', import.meta.url).href,
     demoUrl: "https://portalemp.daniruiz.com/",
     githubUrl: "#",
     destacado: true
@@ -70,6 +70,7 @@ export const proyectosPortfolio = [
     subtitulo: "Presencia, horas y actividades\ndel profesorado autónomo",
     descripcion: "Plataforma para centros de formación que centraliza la presencia, las horas confirmadas, las tutorías, las extras y la documentación del profesorado autónomo.",
     tags: ["Presencia", "Horas", "Tutorías"],
+    imagenIlustrada: new URL('../../imagenes/portfolio/portaldoc-logo.png', import.meta.url).href,
     demoUrl: "https://portaldoc.daniruiz.com/",
     destacado: true
   },
