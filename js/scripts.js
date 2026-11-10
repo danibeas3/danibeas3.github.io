@@ -16,27 +16,39 @@ document.addEventListener("DOMContentLoaded", function () {
   const sections = document.querySelectorAll("section[id]");
 
   if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", function (e) {
-      e.stopPropagation();
-      menuToggle.classList.toggle("open");
-      navMenu.classList.toggle("open");
-      const isExpanded = navMenu.classList.contains("open");
-      menuToggle.setAttribute("aria-expanded", isExpanded);
-    });
+    const mobileMenu = window.matchMedia("(max-width: 768px)");
+    const isMenuOpen = () => navMenu.classList.contains("open");
 
-    menuLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        menuToggle.classList.remove("open");
-        navMenu.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
+    function setMenuOpen(open) {
+      menuToggle.classList.toggle("open", open);
+      navMenu.classList.toggle("open", open);
+      navMenu.inert = mobileMenu.matches && !open;
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Cerrar menú de navegación" : "Abrir menú de navegación");
+    }
 
-    document.addEventListener("click", function (e) {
-      if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove("open");
-        navMenu.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
+    setMenuOpen(false);
+    mobileMenu.addEventListener("change", () => {
+      const focusInNav = navMenu.contains(document.activeElement);
+      setMenuOpen(false);
+      if (mobileMenu.matches && focusInNav) menuToggle.focus();
+    });
+    menuToggle.addEventListener("click", () => setMenuOpen(!isMenuOpen()));
+    menuLinks.forEach(link => link.addEventListener("click", () => setMenuOpen(false)));
+
+    function closeOutside(event) {
+      if (isMenuOpen() && !navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("click", closeOutside);
+    document.addEventListener("focusin", closeOutside);
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && isMenuOpen()) {
+        event.preventDefault();
+        setMenuOpen(false);
+        menuToggle.focus();
       }
     });
   }
@@ -97,28 +109,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const formRespuesta = document.getElementById("form-respuesta");
 
   if (formContacto && formRespuesta) {
+    const campoContacto = formContacto.elements.contacto;
+    const validadorEmail = document.createElement("input");
+    validadorEmail.type = "email";
+    validadorEmail.required = true;
+
+    function mostrarRespuesta(tipo, texto) {
+      formRespuesta.className = `form-respuesta ${tipo}`;
+      formRespuesta.textContent = texto;
+    }
+
+    campoContacto.addEventListener("input", () => campoContacto.setCustomValidity(""));
+
     formContacto.addEventListener("submit", function (e) {
       e.preventDefault();
 
       const btnSubmit = formContacto.querySelector("button[type='submit']");
-      const originalBtnText = btnSubmit.innerHTML;
-      btnSubmit.disabled = true;
-      btnSubmit.innerHTML = "ENVIANDO...";
-
+      if (btnSubmit.disabled) return;
       const rawFormData = new FormData(formContacto);
 
       // Verificación de Honeypot Anti-Spam (Si el bot lo marca, simular éxito sin gastar cuota)
-      const botcheck = rawFormData.get("botcheck");
-      if (botcheck) {
-        formRespuesta.style.display = "block";
-        formRespuesta.className = "form-respuesta exito";
-        formRespuesta.innerHTML = "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.";
+      if (rawFormData.get("botcheck")) {
+        mostrarRespuesta("exito", "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.");
         formContacto.reset();
-        btnSubmit.disabled = false;
-        btnSubmit.innerHTML = originalBtnText;
-        setTimeout(() => {
-          formRespuesta.style.display = "none";
-        }, 6000);
         return;
       }
 
@@ -126,6 +139,20 @@ document.addEventListener("DOMContentLoaded", function () {
       const apellidos = (rawFormData.get("apellidos") || "").trim();
       const contacto = (rawFormData.get("contacto") || "").trim();
       const mensaje = (rawFormData.get("mensaje") || "").trim();
+
+      validadorEmail.value = contacto;
+      const digitosTelefono = contacto.replace(/\D/g, "").replace(/^00/, "");
+      const telefonoValido = /^\+?[\d\s().-]+$/.test(contacto) && /^\d{7,15}$/.test(digitosTelefono);
+      if (!validadorEmail.checkValidity() && !telefonoValido) {
+        campoContacto.setCustomValidity("Introduce un teléfono válido o un email, por ejemplo nombre@ejemplo.es.");
+        campoContacto.reportValidity();
+        return;
+      }
+
+      const originalBtnText = btnSubmit.textContent;
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = "ENVIANDO…";
+      mostrarRespuesta("", "Enviando mensaje…");
 
       const nombreCompleto = `${nombre} ${apellidos}`.trim();
       const fechaActual = new Date().toLocaleString("es-ES", {
@@ -157,28 +184,20 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(payload)
       })
         .then((response) => {
-          formRespuesta.style.display = "block";
           if (response.ok) {
-            formRespuesta.className = "form-respuesta exito";
-            formRespuesta.innerHTML = "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.";
+            mostrarRespuesta("exito", "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.");
             formContacto.reset();
           } else {
-            formRespuesta.className = "form-respuesta error";
-            formRespuesta.innerHTML = "Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.";
+            mostrarRespuesta("error", "Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.");
           }
         })
         .catch((err) => {
           console.error("Error al enviar el formulario:", err);
-          formRespuesta.style.display = "block";
-          formRespuesta.className = "form-respuesta error";
-          formRespuesta.innerHTML = "Hubo un problema al conectar con el servidor. Inténtalo de nuevo.";
+          mostrarRespuesta("error", "Hubo un problema al conectar con el servidor. Inténtalo de nuevo.");
         })
         .finally(() => {
           btnSubmit.disabled = false;
-          btnSubmit.innerHTML = originalBtnText;
-          setTimeout(() => {
-            formRespuesta.style.display = "none";
-          }, 6000);
+          btnSubmit.textContent = originalBtnText;
         });
     });
   }

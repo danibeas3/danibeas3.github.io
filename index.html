@@ -58,6 +58,7 @@
   <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+  <a class="enlace-salto" href="#contenido-principal">Saltar al contenido principal</a>
 
   <!-- ================================
        CABECERA FÍSICA UNIFICADA
@@ -71,7 +72,7 @@
       </div>
 
       <!-- Botón menú hamburguesa (móviles) -->
-      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+      <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-menu">
         <span></span>
         <span></span>
         <span></span>
@@ -89,10 +90,11 @@
     </div>
   </header>
 
+  <main id="contenido-principal" tabindex="-1">
   <!-- ================================
        ESCENARIO 1: INICIO (ESCRITORIO)
   ================================ -->
-  <section id="escenario1">
+  <section id="escenario1" tabindex="-1">
 
     <div class="container">
       <!-- Presentación -->
@@ -135,7 +137,8 @@
   <!-- ================================
        ESCENARIO 2: SOBRE MÍ
   ================================ -->
-  <section id="escenario2">
+  <section id="escenario2" tabindex="-1" aria-labelledby="titulo-sobre-mi">
+    <h2 id="titulo-sobre-mi" class="solo-lectores">Sobre mí</h2>
     <div class="container">
 
       <!-- 🏔️ MONTAÑAS AL FONDO -->
@@ -196,7 +199,8 @@
   <!-- ================================
        ESCENARIO 3: CONOCIMIENTOS
   ================================ -->
-  <section id="escenario3">
+  <section id="escenario3" tabindex="-1" aria-labelledby="titulo-conocimientos">
+    <h2 id="titulo-conocimientos" class="solo-lectores">Conocimientos</h2>
 
     <!-- 🌠 ESTRELLAS FUGACES -->
     <div class="estrella-fugaz estrella-fugaz1"></div>
@@ -281,7 +285,8 @@
   <!-- ================================
        ESCENARIO 4: PORTFOLIO POR RAMAS (GLOBOS DE CATEGORÍAS)
   ================================ -->
-  <section id="escenario4">
+  <section id="escenario4" tabindex="-1" aria-labelledby="titulo-portfolio">
+    <h2 id="titulo-portfolio" class="solo-lectores">Portfolio</h2>
 
     <!-- 🌠 ESTRELLAS FUGACES (Solo se muestran de noche con modo-oscuro) -->
     <div class="estrella-fugaz estrella-fugaz1"></div>
@@ -295,41 +300,53 @@
       <div class="globos-wrapper">
 
         <a href="#" class="globo-item flotacion1" data-category="web" title="Explorar Proyectos Web">
-          <div class="globo-graphic globo-azul">
-            <span class="globo-icon">🌐</span>
+          <div class="globo-graphic">
+            <img src="imagenes/globo_web-400.webp"
+                 srcset="imagenes/globo_web-400.webp 400w, imagenes/globo_web-600.webp 600w"
+                 sizes="(max-width: 768px) 116px, 198px"
+                 width="400" height="400" alt="" loading="lazy" decoding="async">
           </div>
           <div class="globo-info">
-            <span class="globo-label">Proyectos Web</span>
+            <h3 class="globo-label">Proyectos Web</h3>
             <span class="globo-badge">Ver Proyectos</span>
           </div>
         </a>
 
         <a href="#" class="globo-item flotacion2" data-category="youtube" title="Explorar Canales de YouTube & Media">
-          <div class="globo-graphic globo-naranja">
-            <span class="globo-icon">🎥</span>
+          <div class="globo-graphic">
+            <img src="imagenes/globo_youtube-400.webp"
+                 srcset="imagenes/globo_youtube-400.webp 400w, imagenes/globo_youtube-600.webp 600w"
+                 sizes="(max-width: 768px) 116px, 198px"
+                 width="400" height="400" alt="" loading="lazy" decoding="async">
           </div>
           <div class="globo-info">
-            <span class="globo-label">YouTube & Media</span>
+            <h3 class="globo-label">YouTube &amp; Media</h3>
             <span class="globo-badge">Ver Canales</span>
           </div>
         </a>
 
         <a href="#" class="globo-item flotacion3" data-category="software" title="Explorar Apps & Software">
-          <div class="globo-graphic globo-morado">
-            <span class="globo-icon">💻</span>
+          <div class="globo-graphic">
+            <img src="imagenes/globo_codigo-400.webp"
+                 srcset="imagenes/globo_codigo-400.webp 400w, imagenes/globo_codigo-600.webp 600w"
+                 sizes="(max-width: 768px) 116px, 198px"
+                 width="400" height="400" alt="" loading="lazy" decoding="async">
           </div>
           <div class="globo-info">
-            <span class="globo-label">Apps & Software</span>
+            <h3 class="globo-label">Apps &amp; Software</h3>
             <span class="globo-badge">Ver Software</span>
           </div>
         </a>
 
         <a href="#" class="globo-item flotacion4" data-category="sistemas" title="Explorar Sistemas & Redes IT">
-          <div class="globo-graphic globo-verde">
-            <span class="globo-icon">🖥️</span>
+          <div class="globo-graphic">
+            <img src="imagenes/globo_servidores-400.webp"
+                 srcset="imagenes/globo_servidores-400.webp 400w, imagenes/globo_servidores-600.webp 600w"
+                 sizes="(max-width: 768px) 116px, 198px"
+                 width="400" height="400" alt="" loading="lazy" decoding="async">
           </div>
           <div class="globo-info">
-            <span class="globo-label">Sistemas & IT</span>
+            <h3 class="globo-label">Sistemas &amp; IT</h3>
             <span class="globo-badge">Ver Redes</span>
           </div>
         </a>
@@ -366,7 +383,7 @@
   <!-- ================================
        ESCENARIO 5: CONTACTO
   ================================ -->
-  <section id="escenario5">
+  <section id="escenario5" tabindex="-1" aria-labelledby="titulo-contacto">
 
     <div class="montanas-escenario5">
       <img src="imagenes/montana5.svg" alt="Montaña decorativa" class="montana montana-peque1">
@@ -386,25 +403,34 @@
     <div class="container">
 
       <div class="formulario-contacto">
-        <h2>CONTACTA CONMIGO</h2>
+        <h2 id="titulo-contacto">CONTACTA CONMIGO</h2>
         <form action="#" method="POST" id="form-contacto">
           <!-- Campo trampolín Anti-Spam (Honeypot) -->
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
           <div class="fila-input">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="text" name="apellidos" placeholder="Apellidos" required>
+            <label class="campo-contacto">Nombre
+              <input type="text" name="nombre" autocomplete="given-name" required>
+            </label>
+            <label class="campo-contacto">Apellidos
+              <input type="text" name="apellidos" autocomplete="family-name" required>
+            </label>
           </div>
-          <input type="text" name="contacto" placeholder="Teléfono o email" required>
-          <textarea name="mensaje" placeholder="¿En qué te puedo ayudar?" required></textarea>
+          <label class="campo-contacto">Teléfono o email
+            <input type="text" name="contacto" spellcheck="false" required>
+          </label>
+          <label class="campo-contacto">¿En qué te puedo ayudar?
+            <textarea name="mensaje" required></textarea>
+          </label>
           <button type="submit">ENVIAR</button>
-          <div id="form-respuesta" class="form-respuesta"></div>
+          <div id="form-respuesta" class="form-respuesta" role="status"></div>
         </form>
       </div>
 
     </div>
 
   </section>
+  </main>
 
   <!-- ================================
        MODAL EXPLORADOR DE PROYECTOS

@@ -50,6 +50,29 @@ a {
   color: inherit;
 }
 
+.solo-lectores,
+.enlace-salto:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.enlace-salto:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+  background: #211923;
+  color: #FFF6E5;
+  outline: 2px solid #FFF6E5;
+  outline-offset: 2px;
+}
+
 /* ------------------------------
    Contenedor general
 ------------------------------ */
@@ -78,6 +101,7 @@ a {
    Cabecera Única Fija (Transparente y Adaptable)
 ------------------------------ */
 .main-header {
+  --menu-ink: #211923;
   position: fixed;
   top: 0;
   left: 0;
@@ -131,7 +155,7 @@ a {
   position: relative;
   text-decoration: none;
   font-size: 1.15rem;
-  color: #FFF6E5;
+  color: var(--menu-ink);
   font-family: 'Champagne', sans-serif;
   font-weight: bold;
   padding-bottom: 4px;
@@ -155,30 +179,11 @@ a {
 }
 
 /* 🎨 Colores adaptativos de menú según el escenario activo */
-header#main-header[data-theme="escenario1"] .menu a,
-.main-header[data-theme="escenario1"] .menu a { color: #FFF6E5 !important; }
-header#main-header[data-theme="escenario1"] .menu a::after,
-.main-header[data-theme="escenario1"] .menu a::after { background-color: #FFF6E5 !important; }
-
-header#main-header[data-theme="escenario2"] .menu a,
-.main-header[data-theme="escenario2"] .menu a { color: #1F4037 !important; }
-header#main-header[data-theme="escenario2"] .menu a::after,
-.main-header[data-theme="escenario2"] .menu a::after { background-color: #1F4037 !important; }
-
-header#main-header[data-theme="escenario3"] .menu a,
-.main-header[data-theme="escenario3"] .menu a { color: #F9A8D4 !important; }
-header#main-header[data-theme="escenario3"] .menu a::after,
-.main-header[data-theme="escenario3"] .menu a::after { background-color: #F9A8D4 !important; }
-
-header#main-header[data-theme="escenario4"] .menu a,
-.main-header[data-theme="escenario4"] .menu a { color: #7B1FA2 !important; }
-header#main-header[data-theme="escenario4"] .menu a::after,
-.main-header[data-theme="escenario4"] .menu a::after { background-color: #7B1FA2 !important; }
-
-header#main-header[data-theme="escenario5"] .menu a,
-.main-header[data-theme="escenario5"] .menu a { color: #7A3B18 !important; }
-header#main-header[data-theme="escenario5"] .menu a::after,
-.main-header[data-theme="escenario5"] .menu a::after { background-color: #7A3B18 !important; }
+.main-header[data-theme="escenario2"] { --menu-ink: #1F4037; }
+.main-header[data-theme="escenario3"] { --menu-ink: #F9A8D4; }
+.main-header[data-theme="escenario4"] { --menu-ink: #591572; }
+.main-header[data-theme="escenario5"] { --menu-ink: #7A3B18; }
+body:has(#escenario4.modo-oscuro) .main-header[data-theme="escenario4"] { --menu-ink: #FFF6E5; }
 
 /* Botón Hamburguesa */
 .menu-toggle {
@@ -197,9 +202,19 @@ header#main-header[data-theme="escenario5"] .menu a::after,
 .menu-toggle span {
   width: 100%;
   height: 3px;
-  background-color: #FFF6E5;
+  background-color: var(--toggle-ink, var(--menu-ink));
   border-radius: 3px;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid #FFF6E5;
+  box-shadow: 0 0 0 4px #211923;
+}
+
+.menu a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 .menu-toggle.open span:nth-child(1) {
@@ -216,7 +231,6 @@ header#main-header[data-theme="escenario5"] .menu a::after,
 
 /* 📩 Respuesta Formulario AJAX – Rediseño Escenario 5 (Tonos Tierra & Montaña) */
 .form-respuesta {
-  display: none;
   width: 100%;
   margin-top: 15px;
   padding: 14px 20px;
@@ -225,8 +239,21 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   font-size: 1.05rem;
   text-align: center;
   font-weight: bold;
-  animation: fadeIn 0.4s ease-in-out;
   box-shadow: 0 4px 15px rgba(109, 76, 65, 0.08);
+}
+
+.form-respuesta:empty {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.form-respuesta:not(:empty) {
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .form-respuesta.exito {
@@ -268,7 +295,7 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   font-weight: normal;
   letter-spacing: 0.5px;
   line-height: 1.1;
-  color: #3D444C;
+  color: #211923;
 }
 .presentacion .destacado {
   color: #FFF6E5;
@@ -512,7 +539,7 @@ header#main-header[data-theme="escenario5"] .menu a::after,
 .bloques h3 {
   font-family: 'Marcelle', cursive;
   font-size: 1.5rem;
-  color: #FCF9E8;
+  color: #1F4037;
   margin-top: 1rem;
 }
 
@@ -1393,6 +1420,14 @@ header#main-header[data-theme="escenario5"] .menu a::after,
   gap: 2rem;
 }
 
+.campo-contacto {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  font-family: 'Champagne', sans-serif;
+}
+
 /* Estilos unificados con animación de focus */
 .formulario-contacto input,
 .formulario-contacto textarea {
@@ -1474,10 +1509,12 @@ button[type="submit"]:hover {
   }
 
   .menu {
+    --menu-ink: #FFF6E5;
     display: flex !important;
     position: fixed;
     top: 0;
     right: -100%;
+    visibility: hidden;
     width: 80%;
     max-width: 300px;
     height: 100vh;
@@ -1488,13 +1525,15 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: center;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
-    transition: right 0.35s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    transition: right 0.35s cubic-bezier(0.77, 0.2, 0.05, 1.0), visibility 0s linear 0.35s;
     z-index: 1000;
     padding: 2rem 1rem;
   }
 
   .menu.open {
     right: 0;
+    visibility: visible;
+    transition-delay: 0s;
   }
 
   .menu ul {
@@ -1507,20 +1546,13 @@ button[type="submit"]:hover {
 
   .menu a {
     font-size: 1.35rem;
-    color: #FFF !important;
     font-weight: bold;
   }
 
-  .menu a::after {
-    background-color: #E94E5D !important;
+  .main-header[data-theme="escenario1"] .menu-toggle,
+  .menu-toggle.open {
+    --toggle-ink: #FFF6E5;
   }
-
-  /* 📱 Color del botón hamburguesa según escenario activo */
-  #main-header[data-theme="escenario1"] .menu-toggle span { background-color: #FFF6E5 !important; }
-  #main-header[data-theme="escenario2"] .menu-toggle span { background-color: #1F4037 !important; }
-  #main-header[data-theme="escenario3"] .menu-toggle span { background-color: #F9A8D4 !important; }
-  #main-header[data-theme="escenario4"] .menu-toggle span { background-color: #7B1FA2 !important; }
-  #main-header[data-theme="escenario5"] .menu-toggle span { background-color: #7A3B18 !important; }
 
   /* 🎮 ESCENARIO 1 (Móvil - Pared, Cuadros y Mesa) */
   #escenario1 {
@@ -1700,7 +1732,7 @@ button[type="submit"]:hover {
   .bloques li h3 {
     font-size: 1.4rem !important;
     margin-top: 0.2rem !important;
-    color: #FCF9E8 !important;
+    color: #1F4037 !important;
   }
 
   .bloques li p {
@@ -1904,10 +1936,6 @@ button[type="submit"]:hover {
     width: 85px !important;
     height: 105px !important;
   }
-  .globo-icon {
-    font-size: 1.4rem !important;
-    margin-top: -26px !important;
-  }
   .globo-info {
     margin-top: 4px !important;
     gap: 2px !important;
@@ -2033,42 +2061,23 @@ button[type="submit"]:hover {
 }
 
 .globo-graphic {
+  position: relative;
   width: 140px;
   height: 180px;
-  background-repeat: no-repeat;
-  background-position: center;
-  /* Compensa el margen transparente de los nuevos PNG dentro del mismo espacio. */
-  background-size: auto 110%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
   transition: filter 0.3s ease;
 }
 
-.globo-graphic.globo-azul {
-  background-image: url('../imagenes/globo_web.png');
-}
-
-.globo-graphic.globo-naranja {
-  background-image: url('../imagenes/globo_youtube.png');
-}
-
-.globo-graphic.globo-morado {
-  background-image: url('../imagenes/globo_codigo.png');
-}
-
-.globo-graphic.globo-verde {
-  background-image: url('../imagenes/globo_servidores.png');
+.globo-graphic img {
+  position: absolute;
+  inset: -5% 0;
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
 }
 
 .globo-item:hover .globo-graphic {
   filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22));
-}
-
-.globo-icon {
-  font-size: 2.3rem;
-  margin-top: -48px;
-  display: none;
 }
 
 /* Texto e información colocado JUSTO DEBAJO del globo */
@@ -2100,7 +2109,7 @@ button[type="submit"]:hover {
   color: #EDE0F5;
 }
 #escenario4.modo-oscuro .globo-badge {
-  background: #8B6BAE;
+  background: #7459A0;
   color: #F4EAFF;
   box-shadow: 0 3px 12px rgba(180, 140, 220, 0.25);
 }
@@ -2315,5 +2324,19 @@ button[type="submit"]:hover {
   .modal-tabs { padding-bottom: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .modal-container { animation: none; }
+  html { scroll-behavior: auto; }
+
+  :is(#escenario1, #escenario2, #escenario3, #escenario4, #escenario5) *,
+  .modal-container {
+    animation: none !important;
+  }
+
+  .main-header, .menu, .menu-toggle span, .globo-item, #escenario4 {
+    transition: none;
+  }
+
+  .globo-item:hover,
+  .globo-item:hover .globo-badge {
+    transform: none;
+  }
 }
