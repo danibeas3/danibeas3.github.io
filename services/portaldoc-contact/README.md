@@ -1,4 +1,4 @@
-# Formularios de PortalDoc, PortalEmp y AulaQR
+# Formularios de PortalDoc, PortalEmp, AulaQR y Alozenda
 
 Worker compartido para `https://portaldoc.daniruiz.com` y `https://portalemp.daniruiz.com`. El origen permitido determina el producto, los campos y la plantilla; el token debe coincidir con el hostname de ese producto. PortalEmp recibe una plantilla morada con empresa, tamaño del equipo y mensaje.
 
@@ -19,7 +19,7 @@ Worker compartido para `https://portaldoc.daniruiz.com` y `https://portalemp.dan
 
 Este Worker se publica con `pnpm exec wrangler deploy`, desde este directorio, usando un token con permiso **Scripts de Workers: Editar** limitado a la cuenta indicada en `wrangler.jsonc`. Mantener los secretos existentes al desplegar.
 
-La landing continúa publicándose automáticamente desde GitHub a Pages. El Worker se despliega por separado; no se conectó Workers Builds porque sus opciones exigen un token con permisos adicionales innecesarios para este servicio. No crear tokens amplios ni incluir secretos en el repositorio.
+Las landings continúan publicándose automáticamente desde GitHub a Pages. El Worker está conectado a Workers Builds: repositorio `danibeas3/danibeas3.github.io`, rama `main`, directorio raíz `services/portaldoc-contact`, sin comando de compilación y publicación con `npx wrangler deploy --keep-vars`. Se reutiliza la integración y el token de Builds existentes; las compilaciones de ramas de vista previa están desactivadas. No crear tokens amplios ni incluir secretos en el repositorio.
 
 El límite nativo de Cloudflare es aproximado y se aplica por ubicación de Cloudflare. Turnstile aporta la comprobación adicional; ningún filtro garantiza eliminar todo el spam.
 
@@ -28,3 +28,7 @@ Prueba de aceptación: usar la landing pública, una consulta marcada como prueb
 ## AulaQR
 
 AulaQR utiliza exclusivamente el secreto AULAQR_RECIPIENT sin cambiar los destinatarios de los otros productos. Su plantilla HTML y texto plano incluye nombre, centro, correo y mensaje, con colores de AulaQR y Reply-To del visitante. Turnstile exige aulaqr.daniruiz.com. Desplegar con `wrangler deploy --keep-vars`.
+
+## Alozenda
+
+El origen permitido y el hostname de Turnstile son exclusivamente `alozenda.daniruiz.com`. Utiliza el destinatario ya configurado en `CONTACT_RECIPIENT`. La plantilla incluye nombre, alojamiento, correo, número de apartamentos y mensaje, con la identidad de Alozenda. No admite destinatarios proporcionados por el visitante. La demo de la aplicación mantiene sus propios correos simulados; este formulario comercial sí envía solicitudes al propietario.
