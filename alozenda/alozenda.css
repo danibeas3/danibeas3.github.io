@@ -769,28 +769,31 @@ select:focus {
   color: #536572;
 }
 .apartment-chips {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 8px;
-  align-items: end;
-  width: 100%;
-  margin-top: -10px;
-  z-index: 2;
-  padding-right: 0;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid #dde6e2;
+  list-style: none;
 }
-.apartment-chips span {
-  padding: 9px 20px;
-  background: #c7e5d7;
+.apartment-chips li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #edf4f0;
   color: #143b56;
-  border: 1px solid #9ecdb8;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.4;
 }
-.apartment-chips span:nth-child(2) {
-  margin-right: 24px;
-}
-.apartment-chips span:nth-child(3) {
-  margin-right: 48px;
+.apartment-chips li::before {
+  content: "";
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #267d73;
 }
 .identity-word {
   font-family: Manrope;
@@ -1563,9 +1566,6 @@ dialog a {
   }
   .identity-word {
     display: none;
-  }
-  .apartment-chips {
-    margin-top: -10px;
   }
   .company {
     padding-bottom: 64px;
