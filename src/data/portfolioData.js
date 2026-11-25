@@ -77,12 +77,12 @@ export const proyectosPortfolio = [
   {
     id: "apartamentos",
     categoriaId: "software",
-    titulo: "Gestión de Apartamentos Turísticos",
-    subtitulo: "Plataforma de reservas y administración de alojamientos",
-    descripcion: "Software a medida para el control de disponibilidad de habitaciones, calendario interactivo de entradas y salidas, facturación electrónica y comunicación automática con huéspedes.",
-    tags: ["PHP", "JavaScript ES6", "MySQL", "FullCalendar"],
-    imagen: "imagenes/24.png",
-    demoUrl: "#",
+    titulo: "Alozenda",
+    subtitulo: "Gestión de apartamentos turísticos, reservas y cobros",
+    descripcion: "Aplicación para gestionar apartamentos turísticos con calendario, reservas, cobros, facturas, recibís y planificación de limpieza. Empresa y apartamentos configurables, con demo funcional y programa gratuito bajo solicitud.",
+    tags: ["Calendario", "Reservas", "Facturación"],
+    imagenIlustrada: new URL('../../imagenes/portfolio/alozenda-logo.svg', import.meta.url).href,
+    demoUrl: "https://alozenda.daniruiz.com/",
     githubUrl: "#",
     destacado: true
   },

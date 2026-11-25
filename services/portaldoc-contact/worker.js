@@ -1,4 +1,6 @@
+import {validateAlozenda,alozendaEmailContent} from './alozenda.js';
 const ORIGIN = 'https://portaldoc.daniruiz.com';
+const ALOZENDA_ORIGIN = 'https://alozenda.daniruiz.com';
 const HOSTNAME = 'portaldoc.daniruiz.com';
 const EMP_ORIGIN = 'https://portalemp.daniruiz.com';
 const AULA_ORIGIN = 'https://aulaqr.daniruiz.com';
@@ -7,6 +9,7 @@ const choices = ['Por concretar', 'De 1 a 10', 'De 11 a 30', 'Más de 30'];
 const escape = value => value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
 export function validate(data, product = 'PortalDoc') {
+  if (product === 'Alozenda') return validateAlozenda(data);
   if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
   const clean = {};
   const emp = product === 'PortalEmp';
@@ -31,6 +34,7 @@ export function validate(data, product = 'PortalDoc') {
 }
 
 export function emailContent(data, product = 'PortalDoc') {
+  if (product === 'Alozenda') return alozendaEmailContent(data);
   if (product === 'PortalEmp') return employeeEmailContent(data);
   if (product === 'AulaQR') return aulaEmailContent(data);
   const rows = [['Nombre',data.name],['Centro',data.centre],['Correo de contacto',data.email],['Docentes colaboradores',data.teachers]];
@@ -79,9 +83,9 @@ async function readBody(request) {
 
 export async function handle(request, env, fetcher = fetch) {
   const origin = request.headers.get('Origin');
-  const allowed = origin === ORIGIN || origin === EMP_ORIGIN || origin === AULA_ORIGIN;
-  const product = origin === AULA_ORIGIN ? 'AulaQR' : origin === EMP_ORIGIN ? 'PortalEmp' : 'PortalDoc';
-  const hostname = product === 'AulaQR' ? 'aulaqr.daniruiz.com' : product === 'PortalEmp' ? 'portalemp.daniruiz.com' : HOSTNAME;
+  const allowed = origin === ORIGIN || origin === EMP_ORIGIN || origin === AULA_ORIGIN || origin === ALOZENDA_ORIGIN;
+  const product = origin === ALOZENDA_ORIGIN ? 'Alozenda' : origin === AULA_ORIGIN ? 'AulaQR' : origin === EMP_ORIGIN ? 'PortalEmp' : 'PortalDoc';
+  const hostname = product === 'Alozenda' ? 'alozenda.daniruiz.com' : product === 'AulaQR' ? 'aulaqr.daniruiz.com' : product === 'PortalEmp' ? 'portalemp.daniruiz.com' : HOSTNAME;
   const recipient = product === 'AulaQR' ? env.AULAQR_RECIPIENT : env.CONTACT_RECIPIENT;
   const json = (data,status = 200) => new Response(JSON.stringify(data),{status,headers:{
     'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',

@@ -1,0 +1,69 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex"><title>Opciones · Apartamentos Mirador · Alozenda</title><link rel="icon" href="../assets/alozenda-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="./panel.css"></head>
+    <body data-demo-remaining-ms="21599983"><a class="skip" href="#contenido">Saltar al contenido</a><header class="top"><div class="top-inner"><a class="brand" href="/" aria-label="Alozenda · Apartamentos Mirador"><img class="product-mark" src="../assets/alozenda-mark.svg" width="38" height="38" alt=""><span><span class="product-name">Alozenda</span><small class="brand-company">Apartamentos Mirador</small></span></a>
+    <nav aria-label="Panel"><a href="/" ><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Calendario</a><a href="/reservas" ><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Reservas</a><a href="/cobros" ><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3ZM9 8h6m-6 4h6m-6 4h3"/></svg>Cobros y facturas</a><a href="/opciones" aria-current="page"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M9 3l-1 3-3 1-2 3 2 2-1 3 2 3 3-1 3 2 3-2 3 1 2-3-1-3 2-2-2-3-3-1-1-3Z"/></svg>Opciones</a></nav>
+      <div><button class="quiet" type="submit">Cerrar sesión</button></div>
+    </div></header><main id="contenido" tabindex="-1" class="main ">
+    <div class="demo-banner"><span>Demo compartida · Vuelve al estado de fábrica a las 6 horas. Reinicio: <time datetime="2026-11-25T16:26:06.168Z">25 nov, 17:26 (hora de Madrid)</time>.</span><div><button class="quiet" type="submit">Reiniciar demo</button></div></div>
+
+
+
+    <div class="page-heading"><div><h1>Opciones</h1><p>Configura tu empresa y los apartamentos que aparecen en el calendario.</p></div></div>
+
+    <nav class="options-nav" aria-label="Secciones de opciones"><a href="#empresa">Empresa</a><a href="#identidad">Logo y firma</a><a href="#reservas">Reservas</a><a href="#apartamentos">Apartamentos (6)</a></nav>
+    <div>
+      <section id="empresa" class="options-section"><h2>Datos de la empresa</h2><p class="hint">Estos datos identifican al emisor en los nuevos documentos de demostración.</p>
+        <div class="fields"><label>Nombre comercial<input name="name" value="Apartamentos Mirador" required maxlength="80" autocomplete="organization"></label>
+        <label>Razón social<input name="legalName" value="Mirador Demo S.L." required maxlength="120"></label><label>NIF o identificación fiscal<input name="taxId" value="B00000000" required maxlength="40"></label>
+        <label>Dirección<input name="address" value="Dirección de ejemplo" required maxlength="250" autocomplete="street-address"></label><label>Localidad<input name="city" value="Localidad de ejemplo" maxlength="80"></label>
+        <label>Correo de contacto<input name="email" value="reservas@example.com" type="email" required maxlength="200" autocomplete="email"></label><label>Teléfono<input name="phone" value="" type="tel" maxlength="40"></label>
+        <label>Página web<input name="website" value="" type="url" placeholder="https://" maxlength="200"></label><label>Registro turístico (opcional)<input name="tourismCode" value="" maxlength="80"></label>
+        <label>Banco (opcional)<input name="bankName" value="" maxlength="80"></label><label>IBAN (opcional)<input name="iban" value="" maxlength="40"></label>
+        <label class="full">Firma de los correos<textarea name="signatureText" rows="3" maxlength="400">El equipo de Apartamentos Mirador</textarea></label></div>
+      </section>
+      <section id="identidad" class="options-section"><h2>Logotipo y firma</h2><div class="fields"><div class="image-setting"><h3>Logotipo de la empresa</h3>
+    <p class="hint">Todavía no has añadido una imagen.</p>
+    <label>Seleccionar imagen PNG o JPG<input type="file" accept="image/png,image/jpeg" data-company-image="logo"></label>
+    <p class="hint">Hasta 300 KB. Se utiliza en los documentos PDF y en la cabecera.</p>
+    </div><div class="image-setting"><h3>Firma o sello para documentos</h3>
+    <p class="hint">Todavía no has añadido una imagen.</p>
+    <label>Seleccionar imagen PNG o JPG<input type="file" accept="image/png,image/jpeg" data-company-image="stamp"></label>
+    <p class="hint">Hasta 300 KB. Se utiliza en los documentos PDF.</p>
+    </div></div></section>
+      <section id="reservas" class="options-section"><h2>Valores de las reservas</h2><p class="hint">La tarifa y los suplementos se aplican a las nuevas reservas. Los importes ya guardados se conservan.</p>
+        <div class="fields"><label>Hora de entrada<input name="checkin" value="16:00" type="time" required></label><label>Hora de salida<input name="checkout" value="11:00" type="time" required></label>
+        <label>Tarifa orientativa por noche (€)<input name="nightlyRate" value="100.00" inputmode="decimal" required></label><label>Mascota por noche (€)<input name="petRate" value="5.00" inputmode="decimal" required></label><label>Cama supletoria por noche (€)<input name="bedRate" value="35.00" inputmode="decimal" required></label><label>Parking por noche (€)<input name="parkingRate" value="25.00" inputmode="decimal" required></label><label>IVA predeterminado (%)<input name="vat" value="10.00" inputmode="decimal" required></label></div>
+      </section><p class="notice error" role="alert" data-upload-error hidden></p>
+      <div class="form-actions"><button class="button primary" type="submit">Guardar opciones</button><a class="button secondary" href="/">Volver al calendario</a></div>
+    </div>
+    <section id="apartamentos" class="options-section apartments-settings"><h2>Apartamentos</h2><p>Los apartamentos activos aparecen como filas del calendario. Puedes cambiar su nombre, capacidad y orden.</p>
+      <div>
+        <label>Nombre base<input name="prefix" value="Apartamento" required maxlength="65"></label><label>Número de apartamentos<input name="count" type="number" min="1" max="100" value="1" required></label>
+        <button class="button primary" type="submit">Crear apartamentos</button></div>
+      <div class="apartment-list"><div class="panel apartment-setting">
+        <div>
+          <label>Nombre<input name="name" value="Apartamento 1" required maxlength="80"></label><label>Capacidad<input name="capacity" type="number" min="1" max="100" value="2" required></label>
+          <label>Orden<input name="position" type="number" min="1" max="9999" value="1" required></label><button class="button secondary" type="submit">Guardar apartamento</button></div>
+        <div><span class="hint">Activo</span><button class="quiet" type="submit">Archivar</button></div></div><div class="panel apartment-setting">
+        <div>
+          <label>Nombre<input name="name" value="Apartamento 2" required maxlength="80"></label><label>Capacidad<input name="capacity" type="number" min="1" max="100" value="2" required></label>
+          <label>Orden<input name="position" type="number" min="1" max="9999" value="2" required></label><button class="button secondary" type="submit">Guardar apartamento</button></div>
+        <div><span class="hint">Activo</span><button class="quiet" type="submit">Archivar</button></div></div><div class="panel apartment-setting">
+        <div>
+          <label>Nombre<input name="name" value="Apartamento 3" required maxlength="80"></label><label>Capacidad<input name="capacity" type="number" min="1" max="100" value="2" required></label>
+          <label>Orden<input name="position" type="number" min="1" max="9999" value="3" required></label><button class="button secondary" type="submit">Guardar apartamento</button></div>
+        <div><span class="hint">Activo</span><button class="quiet" type="submit">Archivar</button></div></div><div class="panel apartment-setting">
+        <div>
+          <label>Nombre<input name="name" value="Apartamento 4" required maxlength="80"></label><label>Capacidad<input name="capacity" type="number" min="1" max="100" value="2" required></label>
+          <label>Orden<input name="position" type="number" min="1" max="9999" value="4" required></label><button class="button secondary" type="submit">Guardar apartamento</button></div>
+        <div><span class="hint">Activo</span><button class="quiet" type="submit">Archivar</button></div></div><div class="panel apartment-setting">
+        <div>
+          <label>Nombre<input name="name" value="Apartamento 5" required maxlength="80"></label><label>Capacidad<input name="capacity" type="number" min="1" max="100" value="2" required></label>
+          <label>Orden<input name="position" type="number" min="1" max="9999" value="5" required></label><button class="button secondary" type="submit">Guardar apartamento</button></div>
+        <div><span class="hint">Activo</span><button class="quiet" type="submit">Archivar</button></div></div><div class="panel apartment-setting">
+        <div>
+          <label>Nombre<input name="name" value="Apartamento 6" required maxlength="80"></label><label>Capacidad<input name="capacity" type="number" min="1" max="100" value="2" required></label>
+          <label>Orden<input name="position" type="number" min="1" max="9999" value="6" required></label><button class="button secondary" type="submit">Guardar apartamento</button></div>
+        <div><span class="hint">Activo</span><button class="quiet" type="submit">Archivar</button></div></div></div>
+      <p class="hint">Archivar conserva el historial. Los apartamentos con estancias actuales o futuras deben quedar activos.</p>
+    </section></main></body></html>

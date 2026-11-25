@@ -1,0 +1,687 @@
+<!doctype html>
+<html
+  lang="es"
+  data-type="software"
+  data-motion
+  data-radius="soft"
+  data-buttons="solid"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="page-type" content="software" />
+    <meta name="site-kind" content="software" />
+    <title>Alozenda · Gestión gratuita de apartamentos turísticos</title>
+    <meta
+      name="description"
+      content="Gestiona apartamentos, reservas, cobros, facturas y limpieza con Alozenda. Prueba la demo y contacta para solicitar el programa gratuito."
+    />
+    <link rel="canonical" href="https://alozenda.daniruiz.com/" />
+    <meta
+      property="og:title"
+      content="Alozenda · Tus apartamentos, a la vista"
+    />
+    <meta
+      property="og:description"
+      content="Calendario, reservas, cobros y documentos en un mismo panel. El programa es gratis. Contacta con nosotros para empezar."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alozenda.daniruiz.com/" />
+    <meta
+      property="og:image"
+      content="https://alozenda.daniruiz.com/assets/calendario.png"
+    />
+    <meta name="theme-color" content="#143b56" />
+    <link rel="icon" href="./assets/alozenda-mark.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="./assets/manrope-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./alozenda.css" />
+    <link rel="stylesheet" href="./assets/motion/motion.css" />
+    <script type="module" src="./alozenda.js"></script>
+    <script type="module" src="./assets/motion/motion.js"></script>
+    <script type="module" src="./assets/moments/moments.js"></script>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="skip-link" href="#contenido">Saltar al contenido</a>
+        <a class="brand" href="#inicio" aria-label="Alozenda, inicio"
+          ><img
+            src="./assets/alozenda-logo.svg"
+            width="178"
+            height="50"
+            alt="Alozenda"
+        /></a>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="#funciones">Funciones</a><a href="#empresa">Tu empresa</a
+          ><a href="#preguntas">Preguntas</a>
+        </nav>
+        <a class="btn btn--primary nav-cta" href="#contacto"
+          >Solicitar Alozenda</a
+        >
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav
+        id="mobile-menu"
+        class="mobile-menu"
+        aria-label="Navegación móvil"
+        hidden
+      >
+        <a href="#funciones">Funciones</a><a href="#empresa">Tu empresa</a
+        ><a href="#preguntas">Preguntas</a
+        ><a href="#contacto">Solicitar Alozenda</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <section id="inicio" class="hero section" data-enter>
+        <div class="wrap hero-grid">
+          <div class="hero-copy" data-enter>
+            <p class="eyebrow">
+              <span class="brand-stroke"></span>Software para alojamientos
+              turísticos
+            </p>
+            <h1>Gestión de<br />apartamentos,<br /><span>a la vista.</span></h1>
+            <p class="lead">
+              Tus reservas, las entradas de hoy, los cobros pendientes y la
+              limpieza. Alozenda reúne la gestión diaria de tus apartamentos en
+              un mismo panel.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn--primary" href="#contacto">Solicitar Alozenda</a
+              ><a
+                class="btn btn--secondary"
+                href="https://alozenda-demo.dani-ruizporcel.workers.dev/"
+                target="_blank"
+                rel="noopener"
+                >Probar la demo</a
+              >
+            </div>
+            <p class="hero-offer">
+              <strong>El programa es gratis.</strong> Contacta con nosotros para
+              empezar.
+            </p>
+          </div>
+          <div class="hero-art" data-enter="visual">
+            <div class="art-orbit" aria-hidden="true"></div>
+            <div class="app-frame hero-app">
+              <div class="window-bar">
+                <span class="window-dots" aria-hidden="true"
+                  ><i></i><i></i><i></i></span
+                ><span>Alozenda · Calendario de reservas</span>
+              </div>
+              <div
+                class="product-viewport"
+                data-preview
+                inert
+                aria-hidden="true"
+              >
+                <iframe
+                  src="./preview/calendario.html"
+                  title="Vista del calendario real de Alozenda con datos ficticios"
+                  tabindex="-1"
+                  loading="eager"
+                  sandbox
+                ></iframe>
+              </div>
+            </div>
+            <div class="arrival-card" aria-hidden="true">
+              <span class="arrival-icon">✓</span>
+              <div>
+                <span>Todo preparado para la llegada</span
+                ><strong>Reserva, cobro y apartamento</strong>
+              </div>
+              <img
+                src="./assets/alozenda-mark.svg"
+                width="34"
+                height="34"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="funciones" class="section functions">
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <h2>La estancia completa.<br />En el mismo sitio.</h2>
+            </div>
+            <p>
+              Cada reserva mantiene sus fechas, huéspedes, importes y
+              documentos. Consulta lo que necesitas y continúa con la gestión.
+            </p>
+          </div>
+          <div class="workspace">
+            <div
+              class="feature-tabs"
+              role="tablist"
+              aria-label="Funciones de Alozenda"
+              aria-orientation="vertical"
+            >
+              <button
+                id="tab-calendario"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="feature-panel"
+                data-screen="calendario"
+              >
+                <span class="tab-symbol" aria-hidden="true">▦</span
+                ><span
+                  ><strong>Calendario y disponibilidad</strong
+                  ><span
+                    >Vista semanal y mensual, entradas, salidas y control de
+                    reservas solapadas.</span
+                  ></span
+                >
+              </button>
+              <button
+                id="tab-reserva"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="feature-panel"
+                tabindex="-1"
+                data-screen="reserva"
+              >
+                <span class="tab-symbol" aria-hidden="true">▤</span
+                ><span
+                  ><strong>Reservas y cobros</strong
+                  ><span
+                    >Ficha de huésped, suplementos, anticipos, saldo pendiente y
+                    devoluciones.</span
+                  ></span
+                >
+              </button>
+              <button
+                id="tab-empresa"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="feature-panel"
+                tabindex="-1"
+                data-screen="empresa"
+              >
+                <span class="tab-symbol" aria-hidden="true">⌘</span
+                ><span
+                  ><strong>Empresa y apartamentos</strong
+                  ><span
+                    >Datos de empresa, logo, tarifas y apartamentos
+                    configurables desde Opciones.</span
+                  ></span
+                >
+              </button>
+            </div>
+            <div
+              id="feature-panel"
+              role="tabpanel"
+              aria-labelledby="tab-calendario"
+              tabindex="0"
+            >
+              <div class="app-frame feature-app">
+                <div class="window-bar">
+                  <span class="window-dots" aria-hidden="true"
+                    ><i></i><i></i><i></i></span
+                  ><span id="screen-label">Calendario de reservas</span>
+                </div>
+                <div
+                  class="product-viewport"
+                  data-preview
+                  inert
+                  aria-hidden="true"
+                >
+                  <iframe
+                    id="feature-screen"
+                    src="./preview/calendario.html"
+                    title="Calendario de Alozenda"
+                    tabindex="-1"
+                    sandbox
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section documents" id="documentos">
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <h2>Documentos que siguen<br />el ritmo de tus reservas.</h2>
+            </div>
+            <p>
+              Los movimientos y los documentos quedan vinculados a cada estancia
+              para que puedas consultar su historial.
+            </p>
+          </div>
+          <div class="document-grid">
+            <article class="document-feature">
+              <div class="paper-visual" aria-hidden="true">
+                <img
+                  src="./assets/alozenda-logo.svg"
+                  width="120"
+                  height="36"
+                  alt=""
+                />
+                <div class="paper-title">Factura</div>
+                <div class="paper-rule"></div>
+                <div class="paper-lines">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="paper-table">
+                  <span>Estancia</span><span>Importe</span
+                  ><span>Alojamiento</span><span>300,00 €</span>
+                </div>
+                <div class="paper-total">Total <strong>300,00 €</strong></div>
+                <div class="paper-demo">DEMO</div>
+              </div>
+              <h3>Facturas y recibís en PDF</h3>
+              <p>
+                Prepara documentos desde la reserva, consulta los anticipos y
+                conserva el historial de cobros.
+              </p>
+            </article>
+            <article class="document-feature">
+              <div class="cleaning-visual" aria-hidden="true">
+                <div class="cleaning-head">
+                  <span>Planificación de limpieza</span><span>Semana</span>
+                </div>
+                <div class="cleaning-row">
+                  <strong>Apartamento 1</strong
+                  ><span class="status-sand">Limpieza</span>
+                </div>
+                <div class="cleaning-row">
+                  <strong>Apartamento 2</strong
+                  ><span class="status-mint">Ocupado</span>
+                </div>
+                <div class="cleaning-row">
+                  <strong>Apartamento 3</strong
+                  ><span class="status-blue">Entrada</span>
+                </div>
+                <div class="export-line">
+                  <span class="excel-mark">X</span
+                  ><span>Calendario y tareas en Excel</span>
+                </div>
+              </div>
+              <h3>Limpieza y exportaciones</h3>
+              <p>
+                Identifica los cambios de huésped y descarga la planificación
+                mensual en Excel y los cobros en CSV.
+              </p>
+            </article>
+            <article class="document-feature">
+              <div class="reservation-visual" aria-hidden="true">
+                <div class="reservation-title">Detalle de la estancia</div>
+                <div class="reservation-dates">
+                  <div><span>Entrada</span><strong>Miércoles</strong></div>
+                  <span>—</span>
+                  <div><span>Salida</span><strong>Domingo</strong></div>
+                </div>
+                <div class="reservation-line">
+                  <span>Alojamiento</span><strong>400,00 €</strong>
+                </div>
+                <div class="reservation-line">
+                  <span>Anticipo recibido</span><strong>150,00 €</strong>
+                </div>
+                <div class="reservation-balance">
+                  <span>Pendiente</span><strong>250,00 €</strong>
+                </div>
+              </div>
+              <h3>Importes con su contexto</h3>
+              <p>
+                Registra cobros por distintos métodos, añade suplementos y
+                consulta cuánto queda por recibir.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="empresa"
+        class="section company"
+        data-moment="word-highlight"
+      >
+        <div class="wrap company-grid">
+          <div>
+            <h2 class="mo-wh__text">
+              Tu empresa.<br />Tus apartamentos.<br /><strong
+                >Tu Alozenda.</strong
+              >
+            </h2>
+            <p class="lead">
+              Configura la identidad de tu alojamiento y crea los apartamentos
+              que necesitas. El calendario se adapta a tu inventario.
+            </p>
+            <ul class="check-list">
+              <li>Nombre comercial, datos de empresa, logo y firma.</li>
+              <li>Apartamentos con nombre, capacidad y orden propios.</li>
+              <li>Horarios de entrada y salida y tarifas orientativas.</li>
+              <li>Suplementos de mascotas, camas y parking.</li>
+            </ul>
+          </div>
+          <div class="identity-visual">
+            <div class="identity-card">
+              <img
+                src="./assets/alozenda-mark.svg"
+                alt=""
+                width="48"
+                height="48"
+              /><span>Tu alojamiento</span><strong>Apartamentos Mirador</strong>
+              <div class="identity-rule"></div>
+              <div class="identity-row">
+                <span>Empresa</span><b>Configurada</b>
+              </div>
+              <div class="identity-row">
+                <span>Apartamentos</span><b>A tu medida</b>
+              </div>
+              <div class="identity-row">
+                <span>Documentos</span><b>Con tu identidad</b>
+              </div>
+            </div>
+            <div class="apartment-chips" aria-hidden="true">
+              <span>Apartamento Jardín</span><span>Estudio Terraza</span
+              ><span>Suite Mirador</span>
+            </div>
+            <span class="identity-word" aria-hidden="true">Alozenda</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo" class="section demo-section">
+        <div class="wrap demo-grid">
+          <div>
+            <h2>Una demo que<br />puedes usar de verdad.</h2>
+            <p class="lead">
+              Abre el calendario, crea una reserva, registra un cobro o
+              configura los apartamentos. Empieza con una empresa ficticia y
+              datos de esta semana.
+            </p>
+            <a
+              class="btn btn--primary"
+              href="https://alozenda-demo.dani-ruizporcel.workers.dev/"
+              target="_blank"
+              rel="noopener"
+              >Probar la demo</a
+            >
+            <p class="demo-note">
+              La demo es compartida. Los datos se limpian cada seis horas.
+              Utiliza datos ficticios al probarla.
+            </p>
+          </div>
+          <div class="demo-steps">
+            <article>
+              <span class="step-icon" aria-hidden="true">▦</span>
+              <div>
+                <h3>Consulta la semana actual</h3>
+                <p>
+                  Encontrarás reservas, entradas, salidas y cobros de ejemplo
+                  desde el primer acceso.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span class="step-icon" aria-hidden="true">＋</span>
+              <div>
+                <h3>Prueba una operación completa</h3>
+                <p>
+                  Crea una reserva y sigue su ficha hasta los cobros y los
+                  documentos.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span class="step-icon" aria-hidden="true">↺</span>
+              <div>
+                <h3>Vuelve al estado de fábrica</h3>
+                <p>
+                  El reinicio recupera los ejemplos y elimina los cambios de
+                  todos los visitantes.
+                </p>
+              </div>
+            </article>
+            <div class="demo-document-note">
+              En esta demostración, los PDF llevan la marca DEMO y el correo se
+              simula dentro de la aplicación.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="preguntas" class="section questions">
+        <div class="wrap">
+          <div class="section-heading">
+            <div><h2>Preguntas sobre Alozenda.</h2></div>
+            <p>
+              Prueba la aplicación y cuéntanos cómo gestionas tus alojamientos.
+              Te ayudaremos a concretar la puesta en marcha.
+            </p>
+          </div>
+          <div class="faq-grid">
+            <article>
+              <h3>¿El programa es gratis?</h3>
+              <p>
+                Sí. Alozenda se ofrece gratuitamente. Para solicitarlo, contacta
+                con nosotros. Revisaremos contigo tu caso y las condiciones de
+                puesta en marcha.
+              </p>
+            </article>
+            <article>
+              <h3>¿Cómo consigo mi propia instalación?</h3>
+              <p>
+                Envíanos el formulario con el nombre de tu alojamiento y cuántos
+                apartamentos gestionas. A partir de ahí concretamos cómo
+                empezar.
+              </p>
+            </article>
+            <article>
+              <h3>¿Puedo añadir mis apartamentos y mi logo?</h3>
+              <p>
+                Sí. Desde Opciones puedes configurar tu empresa, añadir su logo
+                y firma, crear apartamentos y cambiar sus nombres, capacidad y
+                orden.
+              </p>
+            </article>
+            <article>
+              <h3>¿Se conecta a Booking o Airbnb?</h3>
+              <p>
+                Puedes identificar y gestionar reservas por su canal de
+                procedencia. La versión actual permite registrar esas reservas
+                manualmente.
+              </p>
+            </article>
+            <article>
+              <h3>¿Qué ocurre con mis pruebas en la demo?</h3>
+              <p>
+                Todos los visitantes comparten la misma empresa ficticia. Cada
+                seis horas se recuperan los datos de fábrica con fechas
+                actuales.
+              </p>
+            </article>
+            <article>
+              <h3>¿Las facturas y los correos de la demo son reales?</h3>
+              <p>
+                Los documentos se descargan con la marca DEMO y sin validez
+                fiscal. El envío de correo se simula y su resultado aparece en
+                la aplicación.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section contact">
+        <div class="wrap contact-grid">
+          <div class="contact-copy">
+            <p class="eyebrow">Hablemos de tus apartamentos</p>
+            <h2>El programa<br />es <span>gratis.</span></h2>
+            <p class="lead">
+              Solicita Alozenda y cuéntanos qué necesitas para organizar tu
+              alojamiento.
+            </p>
+            <p>
+              Te responderemos en el correo que indiques para hablar de tu caso
+              y de la puesta en marcha.
+            </p>
+            <div class="contact-signature">
+              <img
+                src="./assets/alozenda-mark.svg"
+                width="44"
+                height="44"
+                alt=""
+              />
+              <div>
+                <strong>Alozenda</strong
+                ><span>Una aplicación de Dani Ruiz</span>
+              </div>
+            </div>
+          </div>
+          <form
+            id="enquiry-form"
+            class="contact-form"
+            action="https://portaldoc-contact.dani-ruizporcel.workers.dev/contact"
+            method="post"
+          >
+            <h3>Solicitar Alozenda</h3>
+            <div class="form-row">
+              <label
+                >Tu nombre<input
+                  name="name"
+                  autocomplete="name"
+                  maxlength="100"
+                  required /></label
+              ><label
+                >Correo electrónico<input
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  maxlength="150"
+                  required
+              /></label>
+            </div>
+            <label
+              >Empresa o nombre del alojamiento<input
+                name="company"
+                autocomplete="organization"
+                maxlength="150"
+                required /></label
+            ><label
+              >Apartamentos que gestionas<select name="apartments" required>
+                <option value="">Selecciona una opción</option>
+                <option>1 apartamento</option>
+                <option>De 2 a 5</option>
+                <option>De 6 a 15</option>
+                <option>Más de 15</option>
+                <option>Estoy empezando</option>
+              </select></label
+            ><label
+              >Cuéntanos qué necesitas <span class="optional">(opcional)</span
+              ><textarea name="message" rows="3" maxlength="2000"></textarea>
+            </label>
+            <div class="honeypot" aria-hidden="true">
+              <label
+                >Tu sitio web<input
+                  name="website"
+                  tabindex="-1"
+                  autocomplete="off"
+              /></label>
+            </div>
+            <p class="privacy-note">
+              Utilizaremos tus datos para responder a esta solicitud.
+              <button class="privacy-link" type="button" id="privacy-open">
+                Información de privacidad
+              </button>
+            </p>
+            <div id="contact-verification" hidden></div>
+            <button
+              id="enquiry-submit"
+              class="btn btn--primary"
+              type="submit"
+              disabled
+            >
+              Preparando formulario…
+            </button>
+            <div id="enquiry-result" hidden>
+              <p
+                id="enquiry-status"
+                role="status"
+                aria-live="polite"
+                tabindex="-1"
+              ></p>
+            </div>
+            <noscript
+              ><p>
+                Activa JavaScript para enviar el formulario o escribe a
+                <a href="mailto:contacto@daniruiz.com">contacto@daniruiz.com</a
+                >.
+              </p></noscript
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="closing">
+      <div class="wrap footer-inner">
+        <a class="brand" href="#inicio" aria-label="Alozenda, volver al inicio"
+          ><img
+            src="./assets/alozenda-logo.svg"
+            width="160"
+            height="45"
+            alt="Alozenda"
+        /></a>
+        <p>Gestión de apartamentos turísticos.</p>
+        <div>
+          <a href="https://daniruiz.com/" target="_blank" rel="noopener"
+            >Dani Ruiz</a
+          ><button class="privacy-link" type="button" data-privacy>
+            Privacidad</button
+          ><span>© 2026 Alozenda</span>
+        </div>
+      </div>
+    </footer>
+    <dialog id="privacy-dialog" aria-labelledby="privacy-title">
+      <button
+        type="button"
+        class="dialog-close"
+        aria-label="Cerrar información de privacidad"
+      >
+        ×
+      </button>
+      <h2 id="privacy-title">Tu solicitud y tus datos</h2>
+      <p>
+        Dani Ruiz recibirá el nombre, el correo, el alojamiento y el mensaje que
+        envíes para atender tu consulta sobre Alozenda.
+      </p>
+      <p>
+        El formulario utiliza los servicios de Cloudflare para verificar el
+        envío y hacer llegar el correo. Puedes escribir a
+        <a href="mailto:contacto@daniruiz.com">contacto@daniruiz.com</a> para
+        consultar el tratamiento de tus datos o solicitar su eliminación.
+      </p>
+      <p>
+        <a
+          href="https://www.cloudflare.com/privacypolicy/"
+          target="_blank"
+          rel="noopener"
+          >Política de privacidad de Cloudflare</a
+        >
+      </p>
+    </dialog>
+  </body>
+</html>

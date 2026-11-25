@@ -11,6 +11,25 @@ const verify = async () => Response.json({success:true,hostname:'portaldoc.danir
 const aulaData = {name:'Contacto de prueba',centre:'Centro <Ejemplo>',email:'prueba@example.com',message:'Consulta sobre AulaQR.\n<script>No ejecutar</script>',website:'',token:'valid-token',recipient:'attacker@example.com'};
 const aulaVerify = async () => Response.json({success:true,hostname:'aulaqr.daniruiz.com',action:'contact'});
 
+test('Alozenda entrega la solicitud al destinatario fijo con marca y campos escapados',async()=>{
+  const {env,sent}=setup();
+  const values={name:'Prueba Alozenda',company:'Apartamentos <Ejemplo>',email:'prueba@example.com',apartments:'De 2 a 5',message:'Consulta <script>de prueba</script>',website:'',token:'valid-token',recipient:'other@example.com'};
+  const alozendaVerify=async()=>Response.json({success:true,hostname:'alozenda.daniruiz.com',action:'contact'});
+  const response=await handle(request(values,'https://alozenda.daniruiz.com'),env,alozendaVerify);
+  assert.equal(response.status,200);
+  assert.equal(sent.length,1);
+  assert.equal(sent[0].to,'owner@example.com');
+  assert.equal(sent[0].subject,'Nueva consulta sobre Alozenda');
+  assert.equal(sent[0].replyTo,values.email);
+  assert.match(sent[0].html,/Apartamentos &lt;Ejemplo&gt;/);
+  assert.doesNotMatch(sent[0].html,/<script>/);
+  assert.match(sent[0].text,/De 2 a 5/);
+  sent.length=0;
+  assert.equal((await handle(request(values,'https://alozenda.daniruiz.com'),env,verify)).status,400);
+  assert.equal((await handle(request({...values,apartments:'cualquiera'},'https://alozenda.daniruiz.com'),env,alozendaVerify)).status,400);
+  assert.equal(sent.length,0);
+});
+
 test('AulaQR sends a teal branded email only to its fixed recipient',async()=>{
   const {env,sent}=setup();env.AULAQR_RECIPIENT='aula-owner@example.com';
   const response=await handle(request(aulaData,'https://aulaqr.daniruiz.com'),env,aulaVerify);

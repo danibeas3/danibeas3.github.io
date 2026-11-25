@@ -10,3 +10,9 @@ dist/
 
 # Maqueta local del correo; nunca se publica
 /aulaqr/.correo-preview.html
+
+# Revisión local de la landing de Alozenda
+/.taste-skill/
+/alozenda/.taste-skill/
+/alozenda/shots/
+/alozenda/assets/tiles/
