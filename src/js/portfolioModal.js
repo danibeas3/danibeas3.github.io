@@ -1,4 +1,4 @@
-import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js?v=proyectos-20261125-alozenda';
+import { categoriasPortfolio, proyectosPortfolio } from '../data/portfolioData.js?v=proyectos-20261128-nintendolab';
 import { portfolioArtwork, portfolioCategoryIcon } from './portfolioArtwork.js';
 
 export function initPortfolioModal() {

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 64" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Nintendo Lab</title>
+  <desc id="desc">Logo de Nintendo Lab: emblema retro de consola rojo junto al nombre Nintendo Lab.</desc>
+  <g transform="translate(6 10)">
+    <rect x="0" y="0" width="44" height="44" rx="10" fill="#C80010"/>
+    <rect x="6" y="7" width="14" height="30" rx="4" fill="#FAF6EF"/>
+    <circle cx="13" cy="17" r="3.2" fill="#181716"/>
+    <rect x="24" y="7" width="14" height="30" rx="4" fill="#181716"/>
+    <circle cx="31" cy="27" r="3.2" fill="#FAF6EF"/>
+  </g>
+  <text x="62" y="38" fill="#181716" font-family="Segoe UI,Arial,sans-serif" font-size="27" font-weight="800" letter-spacing="-0.5">Nintendo</text>
+  <text x="186" y="38" fill="#C80010" font-family="Segoe UI,Arial,sans-serif" font-size="27" font-weight="800" letter-spacing="-0.5">Lab</text>
+  <g transform="translate(63 46)">
+    <circle cx="4" cy="4" r="3" fill="#C80010"/>
+    <circle cx="14" cy="4" r="3" fill="#1A52A8"/>
+    <circle cx="24" cy="4" r="3" fill="#D48D00"/>
+    <circle cx="34" cy="4" r="3" fill="#147D47"/>
+  </g>
+</svg>

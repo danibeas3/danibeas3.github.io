@@ -86,6 +86,18 @@ export const proyectosPortfolio = [
     githubUrl: "#",
     destacado: true
   },
+  {
+    id: "nintendo-lab",
+    categoriaId: "software",
+    titulo: "Nintendo Lab",
+    subtitulo: "Lanzadera de utilidades retro y diagnóstico offline para consolas Nintendo",
+    descripcion: "Colección de herramientas web 100% offline para consolas Nintendo. Incluye Switch Check (comprobador de números de serie RCM con estética Famicom) y 3DS KeyGen (generador de clave maestra de control parental para 3DS/2DS hasta versión 11.17, DSi y Wii).",
+    tags: ["Switch RCM", "3DS mkey", "JavaScript", "Offline"],
+    imagenIlustrada: new URL('../../imagenes/portfolio/nintendo-lab-logo.svg', import.meta.url).href,
+    demoUrl: "https://nintendolab.daniruiz.com/",
+    githubUrl: "https://github.com/danibeas3/nintendo-lab",
+    destacado: true
+  },
 
   // --- PROYECTOS WEB ---
   {

@@ -1,4 +1,4 @@
-import { initPortfolioModal } from '../src/js/portfolioModal.js?v=proyectos-20261125-alozenda';
+import { initPortfolioModal } from '../src/js/portfolioModal.js?v=proyectos-20261128-nintendolab';
 
 document.addEventListener("DOMContentLoaded", function () {
   // 1. INICIALIZACIÓN DEL VISOR MODAL DE PORTFOLIO
